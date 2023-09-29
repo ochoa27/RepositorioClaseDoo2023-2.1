@@ -14,7 +14,7 @@
 	<name>TiendaOnline</name>
 	<description>Backend que ofrece todos los servicios de negocio para la aplicacion Tienda Online </description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>20</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
