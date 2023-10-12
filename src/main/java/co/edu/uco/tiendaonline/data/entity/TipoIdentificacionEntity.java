@@ -14,7 +14,7 @@ public final class TipoIdentificacionEntity {
 		setNombre(nombre);
 		setEstado(estado);
 	}
-	public static final TipoIdentificacionEntity CREAR(final UUID id, final String codigo, final String nombre, final boolean estado) {
+	public static final TipoIdentificacionEntity crear(final UUID id, final String codigo, final String nombre, final boolean estado) {
 		return new TipoIdentificacionEntity(id,codigo,nombre,estado);
 	}
 
