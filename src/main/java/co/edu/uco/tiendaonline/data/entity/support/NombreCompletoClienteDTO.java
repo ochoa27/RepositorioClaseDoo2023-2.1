@@ -1,12 +1,12 @@
 package co.edu.uco.tiendaonline.data.entity.support;
 
-public class NombreCompletoClienteEntity {
+public class NombreCompletoClienteDTO {
 	private String primerNombre;
 	private String segundoNombre;
 	private String primerApellido;
 	private String segundoApellido;
 	
-	private NombreCompletoClienteEntity(final String primerNombre, final String segundoNombre, final String primerApellido,
+	private NombreCompletoClienteDTO(final String primerNombre, final String segundoNombre, final String primerApellido,
 			final String segundoApellido) {
 		setPrimerNombre(primerNombre);
 		setSegundoNombre(segundoNombre);
@@ -14,9 +14,9 @@ public class NombreCompletoClienteEntity {
 		setSegundoApellido(segundoApellido);
 	}
 	
-	public static final NombreCompletoClienteEntity crear(final String primerNombre, final String segundoNombre, final String primerApellido,
+	public static final NombreCompletoClienteDTO crear(final String primerNombre, final String segundoNombre, final String primerApellido,
 			final String segundoApellido) {
-		return new NombreCompletoClienteEntity(primerNombre, segundoNombre, primerApellido, segundoApellido);
+		return new NombreCompletoClienteDTO(primerNombre, segundoNombre, primerApellido, segundoApellido);
 	}
 
 	private final void setPrimerNombre(final String primerNombre) {

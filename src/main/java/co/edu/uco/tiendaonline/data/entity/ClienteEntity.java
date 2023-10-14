@@ -3,23 +3,23 @@ package co.edu.uco.tiendaonline.data.entity;
 import java.sql.Date;
 import java.util.UUID;
 
-import co.edu.uco.tiendaonline.data.entity.support.CorreoElectronicoClienteEntity;
-import co.edu.uco.tiendaonline.data.entity.support.NombreCompletoClienteEntity;
-import co.edu.uco.tiendaonline.data.entity.support.NumeroTelefonoMovilClienteEntity;
+import co.edu.uco.tiendaonline.data.entity.support.CorreoElectronicoClienteDTO;
+import co.edu.uco.tiendaonline.data.entity.support.NombreCompletoClienteDTO;
+import co.edu.uco.tiendaonline.data.entity.support.NumeroTelefonoMovilClienteDTO;
 
 
 public class ClienteEntity {
 	private UUID id;
-	private TipoIdentificacionEntity tipoIdentificacion;
+	private TipoIdentificacionDTO tipoIdentificacion;
 	private String identificacion;
-	private NombreCompletoClienteEntity nombreCompletoEntity;
-	private CorreoElectronicoClienteEntity correoElectronicoEntity;
-	private NumeroTelefonoMovilClienteEntity numeroTelofonoMovilEntity;
+	private NombreCompletoClienteDTO nombreCompletoEntity;
+	private CorreoElectronicoClienteDTO correoElectronicoEntity;
+	private NumeroTelefonoMovilClienteDTO numeroTelofonoMovilEntity;
 	private Date fechaNacimiento;
 	
-	private ClienteEntity(final UUID id, final TipoIdentificacionEntity tipoIdentificacion, final String identificacion,
-			final NombreCompletoClienteEntity nombreCompletoEntity, final CorreoElectronicoClienteEntity correoElectronicoEntity,
-			final NumeroTelefonoMovilClienteEntity numeroTelofonoMovilEntity, final Date fechaNacimiento) {
+	private ClienteEntity(final UUID id, final TipoIdentificacionDTO tipoIdentificacion, final String identificacion,
+			final NombreCompletoClienteDTO nombreCompletoEntity, final CorreoElectronicoClienteDTO correoElectronicoEntity,
+			final NumeroTelefonoMovilClienteDTO numeroTelofonoMovilEntity, final Date fechaNacimiento) {
 		super();
 		this.id = id;
 		this.tipoIdentificacion = tipoIdentificacion;
@@ -30,9 +30,9 @@ public class ClienteEntity {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
-	public static ClienteEntity crear(final UUID id, final TipoIdentificacionEntity tipoIdentificacion, final String identificacion,
-			final NombreCompletoClienteEntity nombreCompletoEntity, final CorreoElectronicoClienteEntity correoElectronicoEntity,
-			final NumeroTelefonoMovilClienteEntity numeroTelofonoMovilEntity, final Date fechaNacimiento) {
+	public static ClienteEntity crear(final UUID id, final TipoIdentificacionDTO tipoIdentificacion, final String identificacion,
+			final NombreCompletoClienteDTO nombreCompletoEntity, final CorreoElectronicoClienteDTO correoElectronicoEntity,
+			final NumeroTelefonoMovilClienteDTO numeroTelofonoMovilEntity, final Date fechaNacimiento) {
 		return new ClienteEntity(id, tipoIdentificacion, identificacion, nombreCompletoEntity, correoElectronicoEntity, numeroTelofonoMovilEntity, fechaNacimiento);
 	}
 
@@ -40,7 +40,7 @@ public class ClienteEntity {
 		this.id = id;
 	}
 
-	private final void setTipoIdentificacion(final TipoIdentificacionEntity tipoIdentificacion) {
+	private final void setTipoIdentificacion(final TipoIdentificacionDTO tipoIdentificacion) {
 		this.tipoIdentificacion = tipoIdentificacion;
 	}
 
@@ -48,15 +48,15 @@ public class ClienteEntity {
 		this.identificacion = identificacion;
 	}
 
-	private final void setNombreCompletoEntity(final NombreCompletoClienteEntity nombreCompletoEntity) {
+	private final void setNombreCompletoEntity(final NombreCompletoClienteDTO nombreCompletoEntity) {
 		this.nombreCompletoEntity = nombreCompletoEntity;
 	}
 
-	private final void setCorreoElectronicoEntity(final CorreoElectronicoClienteEntity correoElectronicoEntity) {
+	private final void setCorreoElectronicoEntity(final CorreoElectronicoClienteDTO correoElectronicoEntity) {
 		this.correoElectronicoEntity = correoElectronicoEntity;
 	}
 
-	private final void setNumeroTelofonoMovilEntity(final NumeroTelefonoMovilClienteEntity numeroTelofonoMovilEntity) {
+	private final void setNumeroTelofonoMovilEntity(final NumeroTelefonoMovilClienteDTO numeroTelofonoMovilEntity) {
 		this.numeroTelofonoMovilEntity = numeroTelofonoMovilEntity;
 	}
 
@@ -68,7 +68,7 @@ public class ClienteEntity {
 		return id;
 	}
 
-	public final TipoIdentificacionEntity getTipoIdentificacion() {
+	public final TipoIdentificacionDTO getTipoIdentificacion() {
 		return tipoIdentificacion;
 	}
 
@@ -76,15 +76,15 @@ public class ClienteEntity {
 		return identificacion;
 	}
 
-	public final NombreCompletoClienteEntity getNombreCompletoEntity() {
+	public final NombreCompletoClienteDTO getNombreCompletoEntity() {
 		return nombreCompletoEntity;
 	}
 
-	public final CorreoElectronicoClienteEntity getCorreoElectronicoEntity() {
+	public final CorreoElectronicoClienteDTO getCorreoElectronicoEntity() {
 		return correoElectronicoEntity;
 	}
 
-	public final NumeroTelefonoMovilClienteEntity getNumeroTelofonoMovilEntity() {
+	public final NumeroTelefonoMovilClienteDTO getNumeroTelofonoMovilEntity() {
 		return numeroTelofonoMovilEntity;
 	}
 

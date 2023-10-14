@@ -1,11 +1,11 @@
 package co.edu.uco.tiendaonline.data.entity.support;
 
-public class NumeroTelefonoMovilClienteEntity {
+public class NumeroTelefonoMovilClienteDTO {
 	
 		public int numeroTelefonoMovil;
 		public boolean numeroTelefonoMovilConfirmado;
 		
-		private NumeroTelefonoMovilClienteEntity(final int numeroTelefonoMovil, final boolean numeroTelefonoMovilConfirmado) {
+		private NumeroTelefonoMovilClienteDTO(final int numeroTelefonoMovil, final boolean numeroTelefonoMovilConfirmado) {
 			super();
 			setNumeroTelefonoMovil(numeroTelefonoMovil);
 			setNumeroTelefonoMovilConfirmado(numeroTelefonoMovilConfirmado);

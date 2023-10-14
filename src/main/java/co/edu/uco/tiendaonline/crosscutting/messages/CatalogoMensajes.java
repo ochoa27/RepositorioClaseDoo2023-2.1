@@ -21,6 +21,10 @@ public final class CatalogoMensajes {
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000004, TipoMensaje.USUARIO, CategoriaMensaje.FATAL, "se ha presentado un sistema inesperado tratando de llevar a cabo la operacion ..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000005, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha presentado un problema tratrando de validar si la conexion SQL estaba abierta..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000006, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha presentado un problema tratrando de validar si la conexion SQL estaba abierta, se presento una exepcion generica de tipo inesperado ..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000007, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha  presentado un error de tipo SQLException tratando de crear un cliente , verifique la traza..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000008, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha  presentado un error de tipo Exception tratando de crear un cliente , verifique la traza..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000009, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha  presentado un error de tipo SQLException tratando de buscar  un cliente , verifique la traza..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M00000000010, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha  presentado un error de tipo Exception tratando de buscar  un cliente , verifique la traza..."));
 
 	}
 	

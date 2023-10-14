@@ -11,7 +11,7 @@ public interface  ClienteDAO {
 	void modificar(ClienteEntity entity);
 	void eliminar(UUID id);
 	
-	Optional<ClienteEntity> consultarPorId(ClienteEntity entity);
+	Optional<ClienteEntity> consultarPorId(UUID entity);
 	List<ClienteEntity> consultar(ClienteEntity entity);
 	
 }
