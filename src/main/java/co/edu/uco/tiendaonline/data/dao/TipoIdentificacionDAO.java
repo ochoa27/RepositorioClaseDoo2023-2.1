@@ -4,16 +4,19 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionDTO;
+import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionEntity;
 
 
 public interface TipoIdentificacionDAO {
 	
-		void crear(TipoIdentificacionDTO entity);
-		void modificar(TipoIdentificacionDTO entity);
+		void crear(TipoIdentificacionEntity entity);
+		
+		void modificar(TipoIdentificacionEntity entity);
+		
 		void eliminar(UUID id);
 	
-		Optional<TipoIdentificacionDTO> consultarPorId(UUID id);
-		List<TipoIdentificacionDTO> consultar(TipoIdentificacionDTO entity);
+		Optional<TipoIdentificacionEntity> consultarPorId(UUID id);
+		
+		List<TipoIdentificacionEntity> consultar(TipoIdentificacionEntity entity);
 		
 }
