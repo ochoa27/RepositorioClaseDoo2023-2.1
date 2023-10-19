@@ -5,6 +5,7 @@ package co.edu.uco.tiendaonline.data.dao.daofactory;
 import co.edu.uco.tiendaonline.data.dao.ClienteDAO;
 import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.dao.daofactory.concrete.SQLServerDAOFactory;
+import co.edu.uco.tiendaonline.data.dao.daofactory.enumerator.TipoDAOFactory;
 
 public abstract class DAOFactory {
 	

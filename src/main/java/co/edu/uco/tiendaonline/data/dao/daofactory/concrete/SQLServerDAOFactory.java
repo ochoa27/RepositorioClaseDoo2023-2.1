@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import co.edu.uco.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
+import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
+import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilSQL;
 import co.edu.uco.tiendaonline.data.dao.ClienteDAO;
 import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.dao.concrete.sqlserver.ClienteSQLServerDAO;
@@ -32,58 +36,44 @@ public class SQLServerDAOFactory extends DAOFactory {
 
 	@Override
 	public final void cerrarConexion() {
-		try {
-            if (conexion != null && !conexion.isClosed()) {
-                conexion.close();
-            }
-        } catch (SQLException e) {
-            //TODO create personalized exception
-        }
+		UtilSQL.cerrarConexion(conexion);
 		
 	}
 
 	@Override
 	public final void iniciarTransaccion() {
-		try {
-            if (conexion != null && !conexion.getAutoCommit()) {
-                conexion.setAutoCommit(false);
-            }
-        } catch (SQLException e) {
-            //TODO create personalized exception
-        }
+		UtilSQL.iniciarTransaccion(conexion);
 	}
 
 	@Override
 	public final  void confirmarTransaccion() {
-		try {
-            if (conexion != null && !conexion.getAutoCommit()) {
-                conexion.commit();
-            }
-        } catch (SQLException e) {
-            //TODO create personalized exception
-        }
+		UtilSQL.confirmarTransaccion(conexion);
 	}
 
 	@Override
 	public final void cancelarTransaccion() {
-		try {
-            if (conexion != null && !conexion.getAutoCommit()) {
-                conexion.rollback();
-            }
-        } catch (SQLException e) {
-            //TODO create personalized exception
-        }
+		UtilSQL.cancelarTransaccion(conexion);
 	}
 
 	@Override
 	public ClienteDAO obtenerclienteDAO() {
-		return new ClienteSQLServerDAO(conexion);
-	}
+		 if(!UtilSQL.conexionAbierta(conexion)) {
+				var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+				var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
+				throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);		
+	        }
+			return new ClienteSQLServerDAO(conexion);
+		}
 
 	@Override
 	public TipoIdentificacionDAO obtenrTipoIdentificacionDAO() {
-		// TODO Auto-generated method stub
+		if(!UtilSQL.conexionAbierta(conexion)) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M00000000027);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);		
+        }
 		return new TipoIdentificacionSQLServerDAO(conexion);
 	}
+	}
 
-}
+
