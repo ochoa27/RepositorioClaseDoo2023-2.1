@@ -31,5 +31,5 @@ public abstract class DAOFactory {
 	public abstract void cancelarTransaccion();
 
 	public abstract  ClienteDAO obtenerclienteDAO();
-	public abstract  TipoIdentificacionDAO obtenrTipoIdentificacionDAO();
+	public abstract  TipoIdentificacionDAO obtenerTipoIdentificacionDAO();
 }
