@@ -66,7 +66,7 @@ public class SQLServerDAOFactory extends DAOFactory {
 		}
 
 	@Override
-	public TipoIdentificacionDAO obtenrTipoIdentificacionDAO() {
+	public TipoIdentificacionDAO obtenerTipoIdentificacionDAO() {
 		if(!UtilSQL.conexionAbierta(conexion)) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M00000000027);
