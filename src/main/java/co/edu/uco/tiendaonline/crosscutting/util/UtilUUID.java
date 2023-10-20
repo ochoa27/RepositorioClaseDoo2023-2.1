@@ -16,4 +16,8 @@ public class UtilUUID {
 	public static final UUID obtenerValorDefecto(final UUID uuid, final UUID valorDefecto) {		
 		return esNulo(uuid) ? UUIDDEFECTO: uuid;
 	}
+	
+	public static final UUID generarRandomUUID() {
+		return UUID.randomUUID();
+	}
 }
