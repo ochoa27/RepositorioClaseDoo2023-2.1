@@ -57,13 +57,14 @@ public class UtilTexto {
 		return obtenerValorDefecto(valor).matches(PATTERN_SOLO_LETRAS);
 	}
 	
-	public static final boolean contieneSoloLetrasEspaciosYSimbolos(final String valor) {
+	public static final boolean contieneSoloLetrasDigitosEspacios(final String valor) {
 		return obtenerValorDefecto(valor).matches(PATTERN_SOLO_LETRAS_DIGITOS_ESPACIOS);
 	}
-	
-	
-	
-	
-	
-	
 }
+	
+	
+	
+	
+	
+	
+

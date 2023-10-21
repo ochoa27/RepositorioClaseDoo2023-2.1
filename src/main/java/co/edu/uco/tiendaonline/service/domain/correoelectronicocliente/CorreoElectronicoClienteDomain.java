@@ -1,4 +1,4 @@
-package co.edu.uco.tiendaonline.service.domain;
+package co.edu.uco.tiendaonline.service.domain.correoelectronicocliente;
 
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
@@ -17,8 +17,8 @@ public final class CorreoElectronicoClienteDomain {
 		setCorreoElectronicoConfirmado(correoElectronicoConfirmado);
 	}
 	
-	public static final CorreoElectronicoClienteDomain crear() {
-		return new CorreoElectronicoClienteDomain();
+	public static final CorreoElectronicoClienteDomain crear(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+		return new CorreoElectronicoClienteDomain(correoElectronico, correoElectronicoConfirmado);
 	}
 
 	private final CorreoElectronicoClienteDomain setCorreoElectronico(final String correoElectronico) {

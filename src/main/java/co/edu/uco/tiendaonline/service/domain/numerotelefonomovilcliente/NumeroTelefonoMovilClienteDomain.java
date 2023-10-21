@@ -1,4 +1,4 @@
-package co.edu.uco.tiendaonline.service.domain;
+package co.edu.uco.tiendaonline.service.domain.numerotelefonomovilcliente;
 
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
@@ -17,8 +17,8 @@ public final class NumeroTelefonoMovilClienteDomain {
 		setNumeroTelefonoMovilConfirmado(numeroTelefonoMovilConfirmado);
 	}
 
-	public static final NumeroTelefonoMovilClienteDomain crear() {
-		return new NumeroTelefonoMovilClienteDomain();
+	public static final NumeroTelefonoMovilClienteDomain crear(final String numeroTelefonoMovil, final boolean numeroTelefonoMovilConfirmado) {
+		return new NumeroTelefonoMovilClienteDomain(numeroTelefonoMovil, numeroTelefonoMovilConfirmado);
 	}
 
 	private final NumeroTelefonoMovilClienteDomain setNumeroTelefonoMovil(final String numeroTelefonoMovil) {

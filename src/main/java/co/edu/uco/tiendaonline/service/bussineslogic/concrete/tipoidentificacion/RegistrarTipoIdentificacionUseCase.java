@@ -1,4 +1,4 @@
-package co.edu.uco.tiendaonline.service.bussineslogic.concrete;
+package co.edu.uco.tiendaonline.service.bussineslogic.concrete.tipoidentificacion;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -12,19 +12,19 @@ import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionEntity;
 import co.edu.uco.tiendaonline.service.bussineslogic.UseCase;
-import co.edu.uco.tiendaonline.service.domain.TipoIdentificacionDomain;
+import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 import co.edu.uco.tiendaonline.service.mapper.entity.concrete.TipoIdentificacionEntityMapper;
 
-public final class RegistrarTipoIdentificacionUseCase implements UseCase<TipoIdentificacionDomain> {
-private DAOFactory factoria;
+public final class RegistrarTipoIdentificacionUseCase implements UseCase<TipoIdentificacionDomain>{
+
+	private DAOFactory factoria;
 	
-	public  RegistrarTipoIdentificacionUseCase(DAOFactory factoria) {
+	public RegistrarTipoIdentificacionUseCase(DAOFactory factoria) {
 		setFactoria(factoria);
 	}
 	
 	@Override
 	public void execute(TipoIdentificacionDomain domain) {
-		//TODO: Validate fields(data type, length, mandatory, restriction
 		validarNoExistenciaMismoCodigo(domain.getCodigo());
 		validarNoExistenciaMismoNombre(domain.getNombre());
 		domain = obtenerIdentificadorTipoIdentificacion(domain);
@@ -45,30 +45,30 @@ private DAOFactory factoria;
 	
 	private final void validarNoExistenciaMismoCodigo(final String codigo) {
 		//TODO: improve method validations
-		var domain = TipoIdentificacionDomain.crear(null, codigo, null, false);
-		var entity = TipoIdentificacionEntityMapper.convertEntity(domain);
-		var resultados = getTipoIdentificacionDAO().consultar(entity);
+		final var domain = TipoIdentificacionDomain.crear(null, codigo, null, false);
+		final var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
+		final var resultados = getTipoIdentificacionDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000079);
+			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000079);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}
 	
 	private final void validarNoExistenciaMismoNombre(final String nombre) {
 		//TODO: improve method validations
-		var domain = TipoIdentificacionDomain.crear(null, null, nombre, false);
-		var entity = TipoIdentificacionEntityMapper.convertEntity(domain);
-		var resultados = getTipoIdentificacionDAO().consultar(entity);
+		final var domain = TipoIdentificacionDomain.crear(null, null, nombre, false);
+		final var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
+		final var resultados = getTipoIdentificacionDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000078);
+			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000078);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}
 	
 	private void registrar(final TipoIdentificacionDomain domain) {
-		getTipoIdentificacionDAO().crear(TipoIdentificacionEntityMapper.convertEntity(domain));
+		getTipoIdentificacionDAO().crear(TipoIdentificacionEntityMapper.convertToEntity(domain));
 	}
 
 	private final DAOFactory getFactoria() {
@@ -77,8 +77,8 @@ private DAOFactory factoria;
 	
 	private final void setFactoria(final DAOFactory factoria) {
 		if(UtilObjeto.esNulo(factoria)) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000076);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000077);
+			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000076);
+			final var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000077);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		

@@ -152,6 +152,110 @@ public final class CatalogoMensajes {
 				"Ya existe un tipo de identificación con ese nombre"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000079, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"Ya existe un tipo de identificación con ese codigo"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000080, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase CorreoElectronicoClienteEntityMapper.No es posible mapear un correo electronico cliente a partir de una entidad de correo electronico entity nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000081, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toEntity de la clase CorreoElectronicoClienteEntityMapper.No es posible mapear un correo electronico cliente entity  a partir de una entidad de correo electronico cliente dominio nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000082, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase NombreCompletoClienteEntityMapper.No es posible mapear un nombre completo cliente a partir de una entidad de nombre completo cliente entity nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000083, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toEntity de la clase NombreCompletoClienteEntityMapper.No es posible mapear un cnombre completo cliente entity  a partir de una entidad de nombre completo cliente dominio nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000084, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase NumeroTelefonoMovilClienteEntityMapper.No es posible mapear un numero de telefono movil cliente a partir de una entidad de numero de telefono movil cliente entity nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000085, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toEntity de la clase NumeroTelefonoMovilClienteEntityMapper.No es posible mapear un numero de telefono movil cliente entity  a partir de una entidad de numero de telefono movil cliente dominio nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000086, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase ClienteEntityMapper.No es posible mapear un cliente dominio a partir de una entidad de cliente entity nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000087, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toEntity de la clase ClienteEntityMapper.No es posible mapear un cliente entity  a partir de una entidad de cliente dominio nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000088, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema tratando de llevar a cabo la consulta de datos de un tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000089, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo setFactoria de la clase ConsultarTipoIdentificaciónUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000090, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema tratando de llevar a cabo la actualización de datos de un nuevo tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000091, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo setFactoria de la clase ActualizarTipoIdentificaciónUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000092, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No existe un tipo de identificación existen a actualizar"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000093, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede actualizar tipo de identificación. Ya existe un tipo de identificación con ese codigo"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000094, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede actualizar tipo de identificación. Ya existe un tipo de identificación con ese nombre"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000095, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema tratando de eliminar un tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000096, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo setFactoria de la clase EliminarTipoIdentifaciónUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000097, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No existe un tipo de identificación existente a eliminar"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000098, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El tipo de identificación a elimianr es utilizado actualmente por clientes"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000099, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema tratando de llevar a cabo el registro de datos de un nuevo cliente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000100, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo setFactoria de la clase RegistrarClienteUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000101, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede registrar el cliente. Ya existe un tipo cliente con ese nombre completo registrado"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000102, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede registrar el cliente. Ya existe un tipo cliente con el correo electronico registrado"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000103, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede registrar el cliente. Ya existe un tipo cliente con el numero telefono movil registrado"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000104, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede registrar el cliente. Ya existe un tipo cliente con el tipo de identificación e identificación registrado"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000105, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema tratando de llevar eliminar un cliente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000106, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo setFactoria de la clase EliminarClienteUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000107, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede eliminar el cliente. El cliente a eliminar no esta registrado"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000108, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema tratando de modificar los datos de un nuevo cliente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000109, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo setFactoria de la clase ModificarClienteUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000110, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede modificar el cliente deseado. Ya existe un tipo cliente con el tipo de identificación e identificación a modificar"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000111, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede modificar el cliente deseado. Ya existe un tipo cliente con el correo electronico a modificar"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000112, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede modificar el cliente deseado. Ya existe un tipo cliente con el correo electronico a modificar"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000113, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No se puede modificar el cliente deseado. Ya existe un tipo cliente con ese nombre completo a modificar"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000114, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No existe un tipo de identificación existente a modificar"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000115, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema tratando de llevar a cabo la consulta de datos de un cliente"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000116, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo setFactoria de la clase ConsultarClienteUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000117, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud del codigo de tipo identificación no es valida. La longitud maxima son 50 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000118, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El codigo de tipo identificación es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000119, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El codigo de tipo identificación solo puede contener letras"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000120, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"La longitud del nombre de tipo identificación no es valida. La longitud maxima son 100 caracteres"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000121, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El nombre de tipo identificación es un dato obligatorio"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000122, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El nombre de tipo identificación solo puede contener letras, digitos y espacios internos"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000123, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"El identificador de tipo identificación es un dato obligatorio y no puede ser igual al UUID por defecto"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000124, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"No es posible llevar a cabo la operación deseada con el tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000125, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
+				"Se presento un error inesperado tratando de registrar un nuevo tipo de identificación"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000126, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema inesperado en función execute en RegistrarTipoIdentificaciónFacade tratando de insertar un nuevo tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000127, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toEntity de la clase TipoIdentificaciónEntityMapper.No es posible mapear un tipo de identificación entity a partir de una entidad de tipo identificación domain nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000128, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación domain a partir de una entidad de tipo identificación dto nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000129, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDTO de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación domain nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000128, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación domain a partir de una entidad de tipo identificación dto nula"));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000129, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
+				"Se ha presentado un problema en el metodo toDTO de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación domain nula"));
 	}
 	
 	private static void agregarMensaje(final Mensaje mensaje) {

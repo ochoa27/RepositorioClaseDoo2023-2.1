@@ -1,6 +1,6 @@
 package co.edu.uco.tiendaonline.crosscutting.util;
 
-public  final class UtilObjeto {
+public final class UtilObjeto {
 	
 	private UtilObjeto() {
 		super();	

@@ -2,12 +2,15 @@ package co.edu.uco.tiendaonline.service.mapper.entity.concrete;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionEntity;
-import co.edu.uco.tiendaonline.service.domain.TipoIdentificacionDomain;
+import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 import co.edu.uco.tiendaonline.service.mapper.entity.EntityMapper;
 
 public class TipoIdentificacionEntityMapper implements EntityMapper<TipoIdentificacionEntity, TipoIdentificacionDomain>{
@@ -43,8 +46,17 @@ public class TipoIdentificacionEntityMapper implements EntityMapper<TipoIdentifi
 	public static final TipoIdentificacionDomain convertToDomain(final TipoIdentificacionEntity entity) {		 
 		return instancia.toDomain(entity);
 	}
-	public static final TipoIdentificacionEntity convertEntity(final TipoIdentificacionDomain domain) {
+	public static final TipoIdentificacionEntity convertToEntity(final TipoIdentificacionDomain domain) {
 		return instancia.toEntity(domain);
+	}
+	
+	public static final List<TipoIdentificacionDomain>  convertToListDomain(final List<TipoIdentificacionEntity> entity){
+		List<TipoIdentificacionDomain> resultados = new ArrayList<>();
+		for (int i = 0; i < entity.size(); i++) {
+			resultados.add(convertToDomain(entity.get(i)));
+		}
+		
+		return resultados;
 	}
 
 

@@ -7,18 +7,18 @@ public final class TipoIdentificacionEntity {
 	private String nombre;
 	private boolean estado;
 	
-	private TipoIdentificacionEntity( final UUID id, final String codigo, final String nombre, final boolean estado) {
-		super();
+	private TipoIdentificacionEntity(final UUID id, final String codigo, final String nombre, final boolean estado) {
 		setId(id);
 		setCodigo(codigo);
 		setNombre(nombre);
 		setEstado(estado);
 	}
+	
 	public static final TipoIdentificacionEntity crear(final UUID id, final String codigo, final String nombre, final boolean estado) {
 		return new TipoIdentificacionEntity(id,codigo,nombre,estado);
 	}
 
-	private final void setId( final UUID id) {
+	private final void setId(final UUID id) {
 		this.id = id;
 	}
 

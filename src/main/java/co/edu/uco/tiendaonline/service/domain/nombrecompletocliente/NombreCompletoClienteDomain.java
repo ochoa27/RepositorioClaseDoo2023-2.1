@@ -1,4 +1,4 @@
-package co.edu.uco.tiendaonline.service.domain;
+package co.edu.uco.tiendaonline.service.domain.nombrecompletocliente;
 
 import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
 
@@ -23,8 +23,9 @@ public final  class NombreCompletoClienteDomain {
 		setSegundoApellido(segundoApellido);
 	}
 	
-	public static final NombreCompletoClienteDomain crear() {
-		return new NombreCompletoClienteDomain();
+	public static final NombreCompletoClienteDomain crear(final String primerNombre, final String segundoNombre, final String primerApellido,
+			final String segundoApellido) {
+		return new NombreCompletoClienteDomain(primerNombre, segundoNombre, primerApellido, segundoApellido);
 	}
 
 	private final NombreCompletoClienteDomain setPrimerNombre(final String primerNombre) {
