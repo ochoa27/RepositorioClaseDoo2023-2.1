@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class UtilUUID {
 	public static final UUID UUIDDEFECTO = new UUID(0L, 0L);
+	 
 	
 	private UtilUUID() {
 		super();	
@@ -20,4 +21,5 @@ public class UtilUUID {
 	public static final UUID generarRandomUUID() {
 		return UUID.randomUUID();
 	}
+	
 }
