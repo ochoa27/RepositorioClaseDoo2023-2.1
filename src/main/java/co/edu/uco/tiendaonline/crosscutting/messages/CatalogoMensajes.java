@@ -256,6 +256,7 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación domain a partir de una entidad de tipo identificación dto nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000129, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo toDTO de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación domain nula"));
+		
 	}
 	
 	private static void agregarMensaje(final Mensaje mensaje) {
