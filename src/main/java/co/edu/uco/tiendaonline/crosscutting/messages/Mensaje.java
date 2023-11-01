@@ -21,13 +21,13 @@ public final class Mensaje {
 		setContenido(contenido);
 	}
 	public static final Mensaje crear(final CodigoMensaje codigo,final  TipoMensaje tipo,final  CategoriaMensaje categoria,final  String contenido) {
-	return new Mensaje(codigo, tipo, categoria, contenido);
+		return new Mensaje(codigo, tipo, categoria, contenido);
 	}
 
 	private final void setCodigo(CodigoMensaje codigo) {
 		if(UtilObjeto.esNulo(codigo)) {
 			var mensajeUSuario= CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico= CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000003);
+			var mensajeTecnico= CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000001);
 			throw CrosscuttingTiendaOnlineException.crear(mensajeUSuario,mensajeTecnico);
 		}
 		this.codigo = codigo;

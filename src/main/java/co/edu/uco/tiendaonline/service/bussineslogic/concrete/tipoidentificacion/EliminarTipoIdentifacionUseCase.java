@@ -12,7 +12,11 @@ import co.edu.uco.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.uco.tiendaonline.service.bussineslogic.UseCase;
 import co.edu.uco.tiendaonline.service.bussineslogic.validator.concrete.tipoidentificacion.EliminarTipoIdentificacionValidator;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
+import co.edu.uco.tiendaonline.service.dto.ClienteDTO;
 import co.edu.uco.tiendaonline.service.domain.cliente.ClienteDomain;
+import co.edu.uco.tiendaonline.service.domain.support.BooleanDomain;
+import co.edu.uco.tiendaonline.service.mapper.dto.concrete.ClienteDTOMapper;
+import co.edu.uco.tiendaonline.service.mapper.dto.concrete.TipoIdentificacionDTOMapper;
 import co.edu.uco.tiendaonline.service.mapper.entity.concrete.ClienteEntityMapper;
 
 public class EliminarTipoIdentifacionUseCase implements UseCase<TipoIdentificacionDomain> {
@@ -25,7 +29,6 @@ public class EliminarTipoIdentifacionUseCase implements UseCase<TipoIdentificaci
 	
 	@Override
 	public void execute(TipoIdentificacionDomain domain) {
-		EliminarTipoIdentificacionValidator.ejecutar(domain);
 		validarExistenciaRegistro(domain.getId());
 		validarNoExistenciaRelacion(domain.getId());
 		eliminar(domain.getId());
@@ -41,8 +44,10 @@ public class EliminarTipoIdentifacionUseCase implements UseCase<TipoIdentificaci
 	}
 	
 	private final void validarNoExistenciaRelacion(final UUID id) {
-		final var domain = TipoIdentificacionDomain.crear(id, null, null, false);
-		final var cliente = ClienteDomain.crear(null, domain, null, null, null, null, null);
+		final var tipoIdentificacion = TipoIdentificacionDomain.crear(id, null, null, BooleanDomain.crear(false, true));
+		final var cliente = ClienteDTOMapper.convertToDomain(
+				ClienteDTO.crear().setTipoIdentificacion(TipoIdentificacionDTOMapper.convertToDTO(tipoIdentificacion)));
+		
 		final var resultados = getClienteDAO().consultar(ClienteEntityMapper.convertToEntity(cliente));
 		
 		if(!resultados.isEmpty()) {

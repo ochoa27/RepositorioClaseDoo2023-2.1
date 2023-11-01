@@ -2,6 +2,9 @@ package co.edu.uco.tiendaonline.data.dao.daofactory;
 
 
 
+import co.edu.uco.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
+import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
+import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.data.dao.ClienteDAO;
 import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.dao.daofactory.concrete.SQLServerDAOFactory;
@@ -15,13 +18,25 @@ public abstract class DAOFactory {
 			return new SQLServerDAOFactory();
 		}
 		case POSTGRESQL:{
-			throw new RuntimeException("Factoria no soportada");}
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
+		}
 		case MYSQL:{
-			throw new RuntimeException("Factoria no soportada");}
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
+		}
 		case ORACLE:{
-			throw new RuntimeException("Factoria no soportada");}
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
+		}
 		default:{
-			throw new RuntimeException("Factoria no soportada");}
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
+			}
 		}
 	}
 	protected abstract void abrirConexion();

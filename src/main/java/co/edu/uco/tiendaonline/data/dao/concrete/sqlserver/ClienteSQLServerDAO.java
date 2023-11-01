@@ -14,19 +14,20 @@ import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilFecha;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilUUID;
 import co.edu.uco.tiendaonline.data.dao.ClienteDAO;
 import co.edu.uco.tiendaonline.data.dao.base.SQLDAO;
 import co.edu.uco.tiendaonline.data.entity.ClienteEntity;
 import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionEntity;
+import co.edu.uco.tiendaonline.data.entity.support.BooleanEntity;
 import co.edu.uco.tiendaonline.data.entity.support.CorreoElectronicoClienteEntity;
 import co.edu.uco.tiendaonline.data.entity.support.NombreCompletoClienteEntity;
 import co.edu.uco.tiendaonline.data.entity.support.NumeroTelefonoMovilClienteEntity;
 
 public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 
-	public  ClienteSQLServerDAO(final Connection conexion) {
+	public ClienteSQLServerDAO(final Connection conexion) {
 		super(conexion);
-		
 	}
 
 	@Override
@@ -46,28 +47,28 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 			sentenciaPreparada.setString(6, cliente.getNombreCompleto().getPrimerApellido());
 			sentenciaPreparada.setString(7, cliente.getNombreCompleto().getSegundoApellido());
 			sentenciaPreparada.setString(8, cliente.getCorreoElectronico().getCorreoElectronico());
-			sentenciaPreparada.setBoolean(9, cliente.getCorreoElectronico().isCorreoElectronicoConfirmado());
+			sentenciaPreparada.setBoolean(9, cliente.getCorreoElectronico().isCorreoElectronicoConfirmado().isValor());
 			sentenciaPreparada.setString(10, cliente.getNumeroTelefonoMovil().getNumeroTelefonoMovil());
-			sentenciaPreparada.setBoolean(11, cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado());
+			sentenciaPreparada.setBoolean(11, cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado().isValor());
 			sentenciaPreparada.setDate(12, cliente.getFechaNacimiento());
 
 			sentenciaPreparada.executeUpdate();
 
 		} catch (final SQLException e) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000015);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000016);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000054);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000055);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		} catch (final Exception e) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000015);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000017);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000054);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000056);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		}
 	}
 
 	@Override
-	public final  void modificar(final ClienteEntity cliente) {
+	public final void modificar(final ClienteEntity cliente) {
 		final var sentencia = new StringBuilder();
-		
+
 		sentencia.append("UPDATE Cliente " );
 		sentencia.append("SET	tipoIdentificacion = ?, ");
 		sentencia.append("		identificacion = ?, ");
@@ -90,26 +91,24 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 			sentenciaPreparada.setString(5, cliente.getNombreCompleto().getPrimerApellido());
 			sentenciaPreparada.setString(6, cliente.getNombreCompleto().getSegundoApellido());
 			sentenciaPreparada.setString(7, cliente.getCorreoElectronico().getCorreoElectronico());
-			sentenciaPreparada.setBoolean(8, cliente.getCorreoElectronico().isCorreoElectronicoConfirmado());
+			sentenciaPreparada.setBoolean(8, cliente.getCorreoElectronico().isCorreoElectronicoConfirmado().isValor());
 			sentenciaPreparada.setString(9, cliente.getNumeroTelefonoMovil().getNumeroTelefonoMovil());
-			sentenciaPreparada.setBoolean(10, cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado());
+			sentenciaPreparada.setBoolean(10, cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado().isValor());
 			sentenciaPreparada.setDate(11, cliente.getFechaNacimiento());
 			sentenciaPreparada.setObject(12, cliente.getId());
 			
 			sentenciaPreparada.executeUpdate();
 			
 		} catch (SQLException e) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000019);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000020);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000059);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000057);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		} catch (Exception e) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000019);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000021);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000059);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000058);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		}
 	}
-		
-	
 
 	@Override
 	public final void eliminar(final UUID id) {
@@ -123,28 +122,27 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 			sentenciaPreparada.executeUpdate();
 			
 		} catch (SQLException e) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000022);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000023);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000062);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000060);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		} catch (Exception e) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000022);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000024);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000062);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000061);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		}
 	}
-		
-	
 
 	@Override
-	public final  Optional<ClienteEntity> consultarPorId(final UUID id) {
+	public final Optional<ClienteEntity> consultarPorId(final UUID id) {
+
 		final var sentencia = new StringBuilder();
 		sentencia.append("SELECT cli.id, cli.tipoIdentificacion, ti.codigo, ti.nombre, ti.estado, cli.identificacion, cli.primerNombre, cli.segundoNombre,"
 				+ " cli.primerApellido, cli.segundoApellido, cli.correoElectronico, cli.correoElectronicoConfirmado, cli.numeroTelefonoMovil,"
-				+ " cli.numeroTelefonoMovilConfirmado, cli.fechaNacimiento");
+				+ " cli.numeroTelefonoMovilConfirmado, cli.fechaNacimiento ");
 		sentencia.append("FROM  Cliente cli ");
 		sentencia.append("JOIN  TipoIdentificacion ti ");
 		sentencia.append("	ON  cli.tipoidentificacion = ti.id ");
-		sentencia.append("WHERE  id = ? ");
+		sentencia.append("WHERE  cli.id = ? ");
 
 		Optional<ClienteEntity> resultado = Optional.empty();
 
@@ -154,52 +152,18 @@ public class ClienteSQLServerDAO extends SQLDAO implements ClienteDAO  {
 		} catch (DataTiendaOnlineException e) {
 			throw e;
 		} catch (SQLException e) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000009);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000063);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		} catch (Exception e) {
-			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M00000000010);
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000064);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		}
 
 		return resultado;
 	}
-private final Optional<ClienteEntity> ejecutarConsultaPorId(final PreparedStatement sentenciaPreparada){
-		
-	Optional<ClienteEntity> resultado = Optional.empty();
 	
-	try (final var resultados = sentenciaPreparada.executeQuery()) {
-		
-		if (resultados.next()) {
-			var clienteEntity = ClienteEntity.crear(
-					UUID.fromString(resultados.getObject("cli.id").toString()), 
-					TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()), 
-							resultados.getString("ti.codigo"), resultados.getString("ti.nombre"), resultados.getBoolean("ti.estado")), 
-					resultados.getString("cli.identificacion"),
-					NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"), resultados.getString("cli.segundoNombre"), 
-							resultados.getString("cli.primerApellido"), resultados.getString("cli.segundoApellido")),
-					CorreoElectronicoClienteEntity.crear(resultados.getString("cli.correoElectronico"), resultados.getBoolean("cli.correoElectronicoConfirmado")),
-					NumeroTelefonoMovilClienteEntity.crear(resultados.getString("cli.numeroTelefonoMovil"), resultados.getBoolean("cli.numeroTelefonoMovilConfirmado")),
-					resultados.getDate("cli.fechaNacimiento")
-					);
-			resultado = Optional.of(clienteEntity);
-		}
-	} catch (SQLException e) {
-		var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000025);
-		var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000026);
-		throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
-	} catch (Exception e) {
-		var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000025);
-		var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
-		throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);		
-	}
-	
-	return resultado;
-}
-		
-	
-
 	@Override
 	public final List<ClienteEntity> consultar(final ClienteEntity cliente) {
 		final var parametros = new ArrayList<Object>();
@@ -213,12 +177,48 @@ private final Optional<ClienteEntity> ejecutarConsultaPorId(final PreparedStatem
 		} catch (SQLException e) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000072);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		}  catch (Exception e) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000073);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		}
+	}
+
+	private final Optional<ClienteEntity> ejecutarConsultaPorId(final PreparedStatement sentenciaPreparada){
+		
+		Optional<ClienteEntity> resultado = Optional.empty();
+		
+		try (final var resultados = sentenciaPreparada.executeQuery()) {
+			
+			if (resultados.next()) {
+				var clienteEntity = ClienteEntity.crear(UUID.fromString(resultados.getObject("id").toString()),
+						TipoIdentificacionEntity.crear(
+								UUID.fromString(resultados.getObject("tipoIdentificacion").toString()),
+								resultados.getString("codigo"), resultados.getString("nombre"),
+								BooleanEntity.crear(resultados.getBoolean("estado"), false)),
+						resultados.getString("identificacion"),
+						NombreCompletoClienteEntity.crear(resultados.getString("primerNombre"),
+								resultados.getString("segundoNombre"), resultados.getString("primerApellido"),
+								resultados.getString("segundoApellido")),
+						CorreoElectronicoClienteEntity.crear(resultados.getString("correoElectronico"),
+								BooleanEntity.crear(resultados.getBoolean("correoElectronicoConfirmado"), false)),
+						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("numeroTelefonoMovil"),
+								BooleanEntity.crear(resultados.getBoolean("numeroTelefonoMovilConfirmado"), false)),
+						resultados.getDate("fechaNacimiento"));
+				resultado = Optional.of(clienteEntity);
+			}
+		} catch (SQLException e) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000066);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
+		} catch (Exception e) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000067);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);		
+		}
+		
+		return resultado;
 	}
 	
 	private String formarSentenciaConsulta(final ClienteEntity cliente, final List<Object> parametros) {
@@ -227,20 +227,20 @@ private final Optional<ClienteEntity> ejecutarConsultaPorId(final PreparedStatem
 		
 		sentencia.append("SELECT cli.id, cli.tipoIdentificacion, ti.codigo, ti.nombre, ti.estado, cli.identificacion, cli.primerNombre, cli.segundoNombre,"
 				+ " cli.primerApellido, cli.segundoApellido, cli.correoElectronico, cli.correoElectronicoConfirmado, cli.numeroTelefonoMovil,"
-				+ " cli.numeroTelefonoMovilConfirmado, cli.fechaNacimiento");
+				+ " cli.numeroTelefonoMovilConfirmado, cli.fechaNacimiento ");
 		sentencia.append("FROM  Cliente cli ");
 		sentencia.append("JOIN  TipoIdentificacion ti ");
-		sentencia.append("	ON  cli.tipoidentificacion = ti.id ");
+		sentencia.append("ON  cli.tipoidentificacion = ti.id ");
 		
 		if(!UtilObjeto.esNulo(cliente)) {
-			if(!UtilObjeto.esNulo(cliente.getId())) {
-				sentencia.append(operadorCondicional).append(" cli.id = ?");
+			if(!UtilUUID.esNulo(cliente.getId())) {
+				sentencia.append(operadorCondicional).append(" cli.id = ? ");
 				operadorCondicional = "AND";
 				parametros.add(cliente.getId());
 			}
 			
-			if(!UtilObjeto.esNulo(cliente.getTipoIdentificacion())) {
-				sentencia.append(operadorCondicional).append(" ti.tipoIdentificacion = ? ");
+			if(!UtilObjeto.esNulo(cliente.getTipoIdentificacion()) && !UtilUUID.esNulo(cliente.getTipoIdentificacion().getId())) {
+				sentencia.append(operadorCondicional).append(" ti.id = ? ");
 				operadorCondicional = "AND";
 				parametros.add(cliente.getTipoIdentificacion().getId());
 			}
@@ -284,10 +284,10 @@ private final Optional<ClienteEntity> ejecutarConsultaPorId(final PreparedStatem
 					parametros.add(cliente.getCorreoElectronico().getCorreoElectronico());
 				}
 				
-				if(!UtilObjeto.esNulo(cliente.getCorreoElectronico().isCorreoElectronicoConfirmado())){
+				if(!cliente.getCorreoElectronico().isCorreoElectronicoConfirmado().isValorDefecto()){
 					sentencia.append(operadorCondicional).append(" cli.correoElectronicoConfirmado = ? ");
 					operadorCondicional = "AND";
-					parametros.add(cliente.getCorreoElectronico().isCorreoElectronicoConfirmado());
+					parametros.add(cliente.getCorreoElectronico().isCorreoElectronicoConfirmado().isValor());
 				}
 			}
 			
@@ -298,10 +298,10 @@ private final Optional<ClienteEntity> ejecutarConsultaPorId(final PreparedStatem
 					parametros.add(cliente.getNumeroTelefonoMovil().getNumeroTelefonoMovil());
 				}
 				
-				if(!UtilObjeto.esNulo(cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado())){
+				if(!cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado().isValorDefecto()){
 					sentencia.append(operadorCondicional).append(" cli.numeroTelefonoMovilConfirmado = ? ");
 					operadorCondicional = "AND";
-					parametros.add(cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado());
+					parametros.add(cliente.getNumeroTelefonoMovil().isNumeroTelefonoMovilConfirmado().isValor());
 				}
 			}
 			
@@ -311,56 +311,58 @@ private final Optional<ClienteEntity> ejecutarConsultaPorId(final PreparedStatem
 			}			
 		}
 		
-		sentencia.append("ORDER BY cli.primerNombre ASC ");			
+		sentencia.append("ORDER BY cli.primerNombre ASC ");
 		return sentencia.toString();
 	}
-			
-			private final void colocarParametrosConsulta(final PreparedStatement sentenciaPreparada, final List<Object> parametros) {
-				
-				try {
-					for (int indice = 0; indice < parametros.size(); indice++) {
-						sentenciaPreparada.setObject(indice + 1, parametros.get(indice));
-					}
-				} catch (SQLException e) {
-					var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
-					var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000068);
-					throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
-				} catch (Exception e) {
-					var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
-					var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000069);
-					throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
-				}
-			}
-			private final List<ClienteEntity> ejecutarConsulta(final PreparedStatement sentenciaPreparada){
-				final var listaResultados = new ArrayList<ClienteEntity>();
-				
-				try (final var resultados = sentenciaPreparada.executeQuery()) {
-					
-					while (resultados.next()) {
-						var clienteEntity = ClienteEntity.crear(
-								UUID.fromString(resultados.getObject("cli.id").toString()), 
-								TipoIdentificacionEntity.crear(UUID.fromString(resultados.getObject("cli.tipoIdentificacion").toString()), 
-										resultados.getString("ti.codigo"), resultados.getString("ti.nombre"), resultados.getBoolean("ti.estado")), 
-								resultados.getString("cli.identificacion"),
-								NombreCompletoClienteEntity.crear(resultados.getString("cli.primerNombre"), resultados.getString("cli.segundoNombre"), 
-										resultados.getString("cli.primerApellido"), resultados.getString("cli.segundoApellido")),
-								CorreoElectronicoClienteEntity.crear(resultados.getString("cli.correoElectronico"), resultados.getBoolean("cli.correoElectronicoConfirmado")),
-								NumeroTelefonoMovilClienteEntity.crear(resultados.getString("cli.numeroTelefonoMovil"), resultados.getBoolean("cli.numeroTelefonoMovilConfirmado")),
-								resultados.getDate("cli.fechaNacimiento")
-								);
-						listaResultados.add(clienteEntity);
-					}
-				} catch (SQLException e) {
-					var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
-					var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000070);
-					throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
-				} catch (Exception e) {
-					var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
-					var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000071);
-					throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);		
-				}
-				
-				return listaResultados;
-			}
 
+	private final void colocarParametrosConsulta(final PreparedStatement sentenciaPreparada, final List<Object> parametros) {
+		
+		try {
+			for (int indice = 0; indice < parametros.size(); indice++) {
+				sentenciaPreparada.setObject(indice + 1, parametros.get(indice));
+			}
+		} catch (SQLException e) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000068);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
+		} catch (Exception e) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000069);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
+		}
+	}
+	
+	private final List<ClienteEntity> ejecutarConsulta(final PreparedStatement sentenciaPreparada){
+		final var listaResultados = new ArrayList<ClienteEntity>();
+		
+		try (final var resultados = sentenciaPreparada.executeQuery()) {
+			while (resultados.next()) {
+				var clienteEntity = ClienteEntity.crear(UUID.fromString(resultados.getObject("id").toString()),
+						TipoIdentificacionEntity.crear(
+								UUID.fromString(resultados.getObject("tipoIdentificacion").toString()),
+								resultados.getString("codigo"), resultados.getString("nombre"),
+								BooleanEntity.crear(resultados.getBoolean("estado"), false)),
+						resultados.getString("identificacion"),
+						NombreCompletoClienteEntity.crear(resultados.getString("primerNombre"),
+								resultados.getString("segundoNombre"), resultados.getString("primerApellido"),
+								resultados.getString("segundoApellido")),
+						CorreoElectronicoClienteEntity.crear(resultados.getString("correoElectronico"),
+								BooleanEntity.crear(resultados.getBoolean("correoElectronicoConfirmado"), false)),
+						NumeroTelefonoMovilClienteEntity.crear(resultados.getString("numeroTelefonoMovil"),
+								BooleanEntity.crear(resultados.getBoolean("numeroTelefonoMovilConfirmado"), false)),
+						resultados.getDate("fechaNacimiento"));
+				listaResultados.add(clienteEntity);
+			}
+		} catch (SQLException e) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000070);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
+		} catch (Exception e) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000065);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000071);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);		
+		}
+		
+		return listaResultados;
+	}
 }

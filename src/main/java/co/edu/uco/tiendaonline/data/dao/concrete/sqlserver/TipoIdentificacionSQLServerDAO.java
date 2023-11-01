@@ -1,26 +1,25 @@
 package co.edu.uco.tiendaonline.data.dao.concrete.sqlserver;
 
-import java.security.DrbgParameters.NextBytes;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import co.edu.uco.tiendaonline.crosscutting.exception.concrete.CrosscuttingTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.uco.tiendaonline.crosscutting.util.UtilUUID;
 import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.dao.base.SQLDAO;
 import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionEntity;
+import co.edu.uco.tiendaonline.data.entity.support.BooleanEntity;
 
-public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements TipoIdentificacionDAO{
+public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements TipoIdentificacionDAO {
 
 	public TipoIdentificacionSQLServerDAO(final Connection conexion) {
 		super(conexion);
@@ -37,18 +36,18 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 			sentenciaPreparada.setObject(1, tipoIdentificacion.getId());
 			sentenciaPreparada.setString(2, tipoIdentificacion.getCodigo());
 			sentenciaPreparada.setString(3, tipoIdentificacion.getNombre());
-			sentenciaPreparada.setBoolean(4, tipoIdentificacion.isEstado());
+			sentenciaPreparada.setBoolean(4, tipoIdentificacion.isEstado().isValor());
 
 			sentenciaPreparada.executeUpdate();
 
 		} catch (final SQLException e) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000053);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000033);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		} catch (final Exception e) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000053);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000034);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		}
 	}
 
@@ -65,7 +64,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		try(final var sentenciaPreparada = getConexion().prepareStatement(sentencia.toString())) {
 			sentenciaPreparada.setString(1, tipoIdentificacion.getCodigo());
 			sentenciaPreparada.setString(2, tipoIdentificacion.getNombre());
-			sentenciaPreparada.setBoolean(3, tipoIdentificacion.isEstado());
+			sentenciaPreparada.setBoolean(3, tipoIdentificacion.isEstado().isValor());
 			sentenciaPreparada.setObject(4, tipoIdentificacion.getId());
 			
 			sentenciaPreparada.executeUpdate();
@@ -73,11 +72,11 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		} catch (SQLException e) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000041);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000039);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		} catch (Exception e) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000041);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000040);
-			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico, e);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		}
 	}
 
@@ -95,7 +94,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		} catch (SQLException e) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000044);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000042);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		} catch (Exception e) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000044);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000043);
@@ -147,7 +146,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		}  catch (Exception e) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000046);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000050);
-			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico,e);
 		}
 	}
 	
@@ -160,7 +159,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 			if (resultados.next()) {
 				var tipoIdentificacionEntity = TipoIdentificacionEntity.crear(
 						UUID.fromString(resultados.getObject("id").toString()), resultados.getString("codigo"),
-						resultados.getString("nombre"), resultados.getBoolean("estado"));
+						resultados.getString("nombre"), BooleanEntity.crear(resultados.getBoolean("estado"), false));
 				resultado = Optional.of(tipoIdentificacionEntity);
 			}
 		} catch (SQLException e) {
@@ -180,36 +179,36 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		final var sentencia = new StringBuilder();
 		String operadorCondicional = "WHERE";
 		
-		sentencia.append("SELECT id, codigo, nombre estado ");
+		sentencia.append("SELECT id, codigo, nombre, estado ");
 		sentencia.append("FROM TipoIdentificacion ");
 		
 		if(!UtilObjeto.esNulo(tipoIdentificacion)) {
-			if(!UtilObjeto.esNulo(tipoIdentificacion.getId())) {
-				sentencia.append(operadorCondicional).append(" id = ?");
-				operadorCondicional = "AND";
+			if(!UtilUUID.esNulo(tipoIdentificacion.getId())) {
+				sentencia.append(operadorCondicional).append(" id = ? ");
+				operadorCondicional = " AND";
 				parametros.add(tipoIdentificacion.getId());
 			}
 			
 			if(!UtilTexto.estaVacio(tipoIdentificacion.getCodigo())) {
 				sentencia.append(operadorCondicional).append(" codigo = ? ");
-				operadorCondicional = "AND";
+				operadorCondicional = " AND";
 				parametros.add(tipoIdentificacion.getCodigo());
 			}
 			
 			if(!UtilTexto.estaVacio(tipoIdentificacion.getNombre())) {
 				sentencia.append(operadorCondicional).append(" nombre = ? ");
-				operadorCondicional = "AND";
+				operadorCondicional = " AND";
 				parametros.add(tipoIdentificacion.getNombre());
 			}
 			
-			if(!UtilObjeto.esNulo(tipoIdentificacion.isEstado())) {
-				//TODO: validate conditional
+			if(!tipoIdentificacion.isEstado().isValorDefecto()) {
 				sentencia.append(operadorCondicional).append(" estado = ? ");
-				parametros.add(tipoIdentificacion.isEstado());
+				parametros.add(tipoIdentificacion.isEstado().isValor());
 			}			
 		}
 		
-		sentencia.append("ORDER BY codigo ASC ");			
+		
+		sentencia.append("ORDER BY codigo ");
 		return sentencia.toString();
 	}
 
@@ -234,11 +233,10 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		final var listaResultados = new ArrayList<TipoIdentificacionEntity>();
 		
 		try (final var resultados = sentenciaPreparada.executeQuery()) {
-			
 			while (resultados.next()) {
 				var tipoIdentificacionEntity = TipoIdentificacionEntity.crear(
 						UUID.fromString(resultados.getObject("id").toString()), resultados.getString("codigo"),
-						resultados.getString("nombre"), resultados.getBoolean("estado"));
+						resultados.getString("nombre"), BooleanEntity.crear(resultados.getBoolean("estado"), false));
 				listaResultados.add(tipoIdentificacionEntity);
 			}
 		} catch (SQLException e) {

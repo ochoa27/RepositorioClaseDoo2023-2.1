@@ -1,5 +1,6 @@
 package co.edu.uco.tiendaonline.service.bussineslogic.concrete.cliente;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.ServiceTiendaOnlineException;
@@ -7,12 +8,22 @@ import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
 import co.edu.uco.tiendaonline.crosscutting.messages.enumerator.CodigoMensaje;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
 import co.edu.uco.tiendaonline.data.dao.ClienteDAO;
+import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.dao.daofactory.DAOFactory;
+import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionEntity;
 import co.edu.uco.tiendaonline.service.bussineslogic.UseCase;
 import co.edu.uco.tiendaonline.service.domain.cliente.ClienteDomain;
 import co.edu.uco.tiendaonline.service.domain.correoelectronicocliente.CorreoElectronicoClienteDomain;
 import co.edu.uco.tiendaonline.service.domain.nombrecompletocliente.NombreCompletoClienteDomain;
 import co.edu.uco.tiendaonline.service.domain.numerotelefonomovilcliente.NumeroTelefonoMovilClienteDomain;
+import co.edu.uco.tiendaonline.service.dto.CorreoElectronicoClienteDTO;
+import co.edu.uco.tiendaonline.service.dto.NombreCompletoClienteDTO;
+import co.edu.uco.tiendaonline.service.dto.NumeroTelefonoMovilClienteDTO;
+import co.edu.uco.tiendaonline.service.dto.TipoIdentificacionDTO;
+import co.edu.uco.tiendaonline.service.mapper.dto.concrete.CorreoElectronicoClienteDTOMapper;
+import co.edu.uco.tiendaonline.service.mapper.dto.concrete.NombreCompletoClienteDTOMapper;
+import co.edu.uco.tiendaonline.service.mapper.dto.concrete.NumeroTelefonoMovilClienteDTOMapper;
+import co.edu.uco.tiendaonline.service.mapper.dto.concrete.TipoIdentificacionDTOMapper;
 import co.edu.uco.tiendaonline.service.mapper.entity.concrete.ClienteEntityMapper;
 
 public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
@@ -26,11 +37,12 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 	@Override
 	public void execute(ClienteDomain domain) {
 		validarExistenciaRegistro(domain.getId());
-		validarNoExistenciaMismoNombre(domain.getNombreCompleto());
-		validarNoExistenciaCorreoElectronico(domain.getCorreoElectronico());
-		validarNoExistenciaNumeroTelefonoMovil(domain.getNumeroTelefonoMovil());
+		validarNoExistenciaMismoNombre(domain.getId(), domain.getNombreCompleto());
+		validarNoExistenciaCorreoElectronico(domain.getId(), domain.getCorreoElectronico());
+		validarNoExistenciaNumeroTelefonoMovil(domain.getId(), domain.getNumeroTelefonoMovil());
 		validarNoExistenciaIdentificacion(domain);
-		eliminar(domain.getId());
+		validarExistenciaTipoIdentificacion(domain.getTipoIdentificacion().getId());
+		modificar(domain);
 	}
 	
 	private final void validarExistenciaRegistro(final UUID id) {
@@ -42,56 +54,91 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 		}
 	}
 	
-	private final void validarNoExistenciaMismoNombre(final NombreCompletoClienteDomain nombre) {
-		//TODO: improve method validations
-		final var domain = ClienteDomain.crear(null, null, null, nombre, null, null, null);
+	private final void validarNoExistenciaMismoNombre(final UUID id, final NombreCompletoClienteDomain nombre) {
+		final var domain = ClienteDomain.crear(null,
+				TipoIdentificacionDTOMapper.convertToDomain(TipoIdentificacionDTO.crear()), null, nombre,
+				CorreoElectronicoClienteDTOMapper.convertToDomain(CorreoElectronicoClienteDTO.crear()),
+				NumeroTelefonoMovilClienteDTOMapper.convertToDomain(NumeroTelefonoMovilClienteDTO.crear()), null);
 		final var entity = ClienteEntityMapper.convertToEntity(domain);
 		final var resultados = getClienteDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000113);
-			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+			for (int i = 0; i < resultados.size(); i++) {
+				if(!resultados.get(i).getId().equals(id)) {
+					final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000113);
+					throw ServiceTiendaOnlineException.crear(mensajeUsuario);	
+				}
+			}
 		}
 	}
 	
-	private final void validarNoExistenciaCorreoElectronico(final CorreoElectronicoClienteDomain correoElectronico) {
-		//TODO: improve method validations
-		final var domain = ClienteDomain.crear(null, null, null, null, correoElectronico, null, null);
+	private final void validarNoExistenciaCorreoElectronico(final UUID id, final CorreoElectronicoClienteDomain correoElectronico) {
+		final var domain = ClienteDomain.crear(null,
+				TipoIdentificacionDTOMapper.convertToDomain(TipoIdentificacionDTO.crear()), null,
+				NombreCompletoClienteDTOMapper.convertToDomain(NombreCompletoClienteDTO.crear()), correoElectronico,
+				NumeroTelefonoMovilClienteDTOMapper.convertToDomain(NumeroTelefonoMovilClienteDTO.crear()), null);
 		final var entity = ClienteEntityMapper.convertToEntity(domain);
 		final var resultados = getClienteDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000112);
-			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+			for (int i = 0; i < resultados.size(); i++) {
+				if(!resultados.get(i).getId().equals(id)) {
+					final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000112);
+					throw ServiceTiendaOnlineException.crear(mensajeUsuario);	
+				}
+			}
 		}
 	}
 	
-	private final void validarNoExistenciaNumeroTelefonoMovil(final NumeroTelefonoMovilClienteDomain numeroTelefono) {
-		//TODO: improve method validations
-		final var domain = ClienteDomain.crear(null, null, null, null, null, numeroTelefono, null);
+	private final void validarNoExistenciaNumeroTelefonoMovil(final UUID id, final NumeroTelefonoMovilClienteDomain numeroTelefono) {
+		final var domain = ClienteDomain.crear(null,
+				TipoIdentificacionDTOMapper.convertToDomain(TipoIdentificacionDTO.crear()), null,
+				NombreCompletoClienteDTOMapper.convertToDomain(NombreCompletoClienteDTO.crear()),
+				CorreoElectronicoClienteDTOMapper.convertToDomain(CorreoElectronicoClienteDTO.crear()), numeroTelefono,
+				null);
 		final var entity = ClienteEntityMapper.convertToEntity(domain);
 		final var resultados = getClienteDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000111);
-			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+			for (int i = 0; i < resultados.size(); i++) {
+				if(!resultados.get(i).getId().equals(id)) {
+					final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000111);
+					throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+				}
+			}
 		}
 	}
 	
 	private final void validarNoExistenciaIdentificacion(final ClienteDomain cliente) {
-		//TODO: improve method validations
-		final var domain = ClienteDomain.crear(null, cliente.getTipoIdentificacion(), cliente.getIdentificacion(), null, null, null, null);
+		final var domain = ClienteDomain.crear(null, cliente.getTipoIdentificacion(), cliente.getIdentificacion(),
+				NombreCompletoClienteDTOMapper.convertToDomain(NombreCompletoClienteDTO.crear()),
+				CorreoElectronicoClienteDTOMapper.convertToDomain(CorreoElectronicoClienteDTO.crear()),
+				NumeroTelefonoMovilClienteDTOMapper.convertToDomain(NumeroTelefonoMovilClienteDTO.crear()), null);
 		final var entity = ClienteEntityMapper.convertToEntity(domain);
 		final var resultados = getClienteDAO().consultar(entity);
 		
 		if(!resultados.isEmpty()) {
-			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000110);
+			for (int i = 0; i < resultados.size(); i++) {
+				if(!resultados.get(i).getId().equals(cliente.getId())) {
+					final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000110);
+					throw ServiceTiendaOnlineException.crear(mensajeUsuario);
+				}
+			}
+		}
+	}
+	
+	private final void validarExistenciaTipoIdentificacion(final UUID tipoIdentificacion) {
+		Optional<TipoIdentificacionEntity> optional;
+		optional = getTipoIdentificacionDAO().consultarPorId(tipoIdentificacion);
+		
+		if(!optional.isPresent()) {
+			final var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000185);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario);
 		}
 	}
 	
-	private void eliminar(final UUID id) {
-		getClienteDAO().eliminar(id);
+	private void modificar(final ClienteDomain domain) {
+		getClienteDAO().modificar(ClienteEntityMapper.convertToEntity(domain));
 	}
 	
 	private final DAOFactory getFactoria() {
@@ -112,4 +159,7 @@ public class ModificarClienteUseCase implements UseCase<ClienteDomain> {
 		return getFactoria().obtenerclienteDAO();
 	}
 
+	private final TipoIdentificacionDAO getTipoIdentificacionDAO() {
+		return getFactoria().obtenerTipoIdentificacionDAO();
+	}
 }

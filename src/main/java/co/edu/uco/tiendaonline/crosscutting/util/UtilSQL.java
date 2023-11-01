@@ -16,7 +16,7 @@ public class UtilSQL {
 	public static final boolean conexionAbierta(final Connection conexion) {
 		if(UtilObjeto.esNulo(conexion)) {
 			var mensajeUsuario=CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico="no es posible cerrar una conexion que esta nula  ";
+			var mensajeTecnico=CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M1);
 			throw CrosscuttingTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		try {

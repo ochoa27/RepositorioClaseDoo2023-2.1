@@ -1,41 +1,33 @@
 package co.edu.uco.tiendaonline.service.domain.numerotelefonomovilcliente;
 
-import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
-import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.uco.tiendaonline.service.domain.support.BooleanDomain;
 
-public final class NumeroTelefonoMovilClienteDomain {
+public class NumeroTelefonoMovilClienteDomain {
 	private String numeroTelefonoMovil;
-	private boolean numeroTelefonoMovilConfirmado;
+	private BooleanDomain numeroTelefonoMovilConfirmado;
 	
-	public NumeroTelefonoMovilClienteDomain() {
-		setNumeroTelefonoMovil(UtilTexto.VACIO);
-		setNumeroTelefonoMovilConfirmado(false);
-	}
-	
-	public NumeroTelefonoMovilClienteDomain(final String numeroTelefonoMovil, final boolean numeroTelefonoMovilConfirmado) {
+	private NumeroTelefonoMovilClienteDomain(final String numeroTelefonoMovil, final BooleanDomain numeroTelefonoMovilConfirmado) {
 		setNumeroTelefonoMovil(numeroTelefonoMovil);
 		setNumeroTelefonoMovilConfirmado(numeroTelefonoMovilConfirmado);
 	}
 
-	public static final NumeroTelefonoMovilClienteDomain crear(final String numeroTelefonoMovil, final boolean numeroTelefonoMovilConfirmado) {
+	public static final NumeroTelefonoMovilClienteDomain crear(final String numeroTelefonoMovil, final BooleanDomain numeroTelefonoMovilConfirmado) {
 		return new NumeroTelefonoMovilClienteDomain(numeroTelefonoMovil, numeroTelefonoMovilConfirmado);
 	}
 
-	private final NumeroTelefonoMovilClienteDomain setNumeroTelefonoMovil(final String numeroTelefonoMovil) {
-		this.numeroTelefonoMovil = UtilTexto.obtenerValorDefecto(numeroTelefonoMovil, UtilTexto.VACIO);
-		return this;
+	private final void setNumeroTelefonoMovil(final String numeroTelefonoMovil) {
+		this.numeroTelefonoMovil = numeroTelefonoMovil;
 	}
 
-	private final NumeroTelefonoMovilClienteDomain setNumeroTelefonoMovilConfirmado(final boolean numeroTelefonoMovilConfirmado) {
-		this.numeroTelefonoMovilConfirmado = UtilObjeto.obtenerValorDefecto(numeroTelefonoMovilConfirmado, false);
-		return this;
+	private final void setNumeroTelefonoMovilConfirmado(final BooleanDomain numeroTelefonoMovilConfirmado) {
+		this.numeroTelefonoMovilConfirmado = numeroTelefonoMovilConfirmado;
 	}
 
 	public final String getNumeroTelefonoMovil() {
 		return numeroTelefonoMovil;
 	}
 
-	public final boolean isNumeroTelefonoMovilConfirmado() {
+	public final BooleanDomain isNumeroTelefonoMovilConfirmado() {
 		return numeroTelefonoMovilConfirmado;
 	}
 }

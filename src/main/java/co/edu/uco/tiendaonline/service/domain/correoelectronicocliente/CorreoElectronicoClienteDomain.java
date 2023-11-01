@@ -1,41 +1,33 @@
 package co.edu.uco.tiendaonline.service.domain.correoelectronicocliente;
 
-import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
-import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
+import co.edu.uco.tiendaonline.service.domain.support.BooleanDomain;
 
-public final class CorreoElectronicoClienteDomain {
+public class CorreoElectronicoClienteDomain {
 	private String correoElectronico;
-	private boolean correoElectronicoConfirmado;
+	private BooleanDomain correoElectronicoConfirmado;
 	
-	public CorreoElectronicoClienteDomain() {
-		setCorreoElectronico(UtilTexto.VACIO);
-		setCorreoElectronicoConfirmado(false);
-	}
-	
-	public CorreoElectronicoClienteDomain(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+	private CorreoElectronicoClienteDomain(final String correoElectronico, final BooleanDomain correoElectronicoConfirmado) {
 		setCorreoElectronico(correoElectronico);
 		setCorreoElectronicoConfirmado(correoElectronicoConfirmado);
 	}
 	
-	public static final CorreoElectronicoClienteDomain crear(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+	public static final CorreoElectronicoClienteDomain crear(final String correoElectronico, final BooleanDomain correoElectronicoConfirmado) {
 		return new CorreoElectronicoClienteDomain(correoElectronico, correoElectronicoConfirmado);
 	}
 
-	private final CorreoElectronicoClienteDomain setCorreoElectronico(final String correoElectronico) {
-		this.correoElectronico = UtilTexto.obtenerValorDefecto(UtilTexto.aplicarTrim(correoElectronico), "");
-		return this;
+	private final void setCorreoElectronico(final String correoElectronico) {
+		this.correoElectronico = correoElectronico;
 	}
 
-	private final CorreoElectronicoClienteDomain setCorreoElectronicoConfirmado(final boolean correoElectronicoConfirmado) {
-		this.correoElectronicoConfirmado = UtilObjeto.obtenerValorDefecto(correoElectronicoConfirmado, false);
-		return this;
+	private final void setCorreoElectronicoConfirmado(final BooleanDomain correoElectronicoConfirmado) {
+		this.correoElectronicoConfirmado = correoElectronicoConfirmado;
 	}
 
 	public final String getCorreoElectronico() {
 		return correoElectronico;
 	}
 
-	public final boolean isCorreoElectronicoConfirmado() {
+	public final BooleanDomain isCorreoElectronicoConfirmado() {
 		return correoElectronicoConfirmado;
 	}
 }

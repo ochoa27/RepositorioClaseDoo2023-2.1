@@ -15,16 +15,26 @@ public final class CatalogoMensajes {
 	private static final Map<CodigoMensaje,Mensaje> MENSAJES = new HashMap<>();
 	
 	private static final void cargarMensaje() {
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000001, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "No se recibio el codigo de mensaje..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000002, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "No existe un mensaje con el codigo indicado..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000003, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "No es posible obtener un mensaje con codigo vacio o nulo..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000004, TipoMensaje.USUARIO, CategoriaMensaje.FATAL, "se ha presentado un sistema inesperado tratando de llevar a cabo la operacion ..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000005, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha presentado un problema tratrando de validar si la conexion SQL estaba abierta..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000006, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha presentado un problema tratrando de validar si la conexion SQL estaba abierta, se presento una exepcion generica de tipo inesperado ..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000007, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha  presentado un error de tipo SQLException tratando de crear un cliente , verifique la traza..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000008, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha  presentado un error de tipo Exception tratando de crear un cliente , verifique la traza..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000009, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha  presentado un error de tipo SQLException tratando de buscar  un cliente , verifique la traza..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M00000000010, TipoMensaje.TECNICO, CategoriaMensaje.FATAL, "se ha  presentado un error de tipo Exception tratando de buscar  un cliente , verifique la traza..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000001, TipoMensaje.TECNICO, CategoriaMensaje.FATAL,
+				"No se recibio el codigo de mensaje..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000002, TipoMensaje.TECNICO, CategoriaMensaje.FATAL,
+				"No existe un mensaje con el codigo indicado..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000003, TipoMensaje.TECNICO, CategoriaMensaje.FATAL,
+				"No es posible obtener un mensaje con codigo vacio o nulo..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000004, TipoMensaje.USUARIO, CategoriaMensaje.FATAL,
+				"se ha presentado un sistema inesperado tratando de llevar a cabo la operacion ..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000005, TipoMensaje.TECNICO, CategoriaMensaje.FATAL,
+				"se ha presentado un problema tratrando de validar si la conexion SQL estaba abierta..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000006, TipoMensaje.TECNICO, CategoriaMensaje.FATAL,
+				"se ha presentado un problema tratrando de validar si la conexion SQL estaba abierta, se presento una exepcion generica de tipo inesperado ..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000007, TipoMensaje.TECNICO, CategoriaMensaje.FATAL,
+				"se ha  presentado un error de tipo SQLException tratando de crear un cliente , verifique la traza..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000008, TipoMensaje.TECNICO, CategoriaMensaje.FATAL,
+				"se ha  presentado un error de tipo Exception tratando de crear un cliente , verifique la traza..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000009, TipoMensaje.TECNICO, CategoriaMensaje.FATAL,
+				"se ha  presentado un error de tipo SQLException tratando de buscar  un cliente , verifique la traza..."));
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M00000000010, TipoMensaje.TECNICO, CategoriaMensaje.FATAL,
+				"se ha  presentado un error de tipo Exception tratando de buscar  un cliente , verifique la traza..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000011, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
 				"Se ha presentado un problema tratando de cerrar la conexión SQL. Se presento una excepcion inesperada. Por favor verifique la traza del error presentado..."));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000012, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
@@ -256,7 +266,8 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación domain a partir de una entidad de tipo identificación dto nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000129, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo toDTO de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación domain nula"));
-		
+		agregarMensaje(Mensaje.crear(CodigoMensaje.M1, TipoMensaje.TECNICO, CategoriaMensaje.ERROR, 
+				"Se ha presentado un problema tratando de validar si la conexión SQL estaba abierta, la conexión se encontraba nula"));
 	}
 	
 	private static void agregarMensaje(final Mensaje mensaje) {
@@ -271,7 +282,7 @@ public final class CatalogoMensajes {
 		}
 		if(!MENSAJES.containsKey(codigo)) {
 			var mensajeUSuario= obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico= obtenerContenidoMensaje(CodigoMensaje.M0000000003);
+			var mensajeTecnico= obtenerContenidoMensaje(CodigoMensaje.M0000000002);
 			throw CrosscuttingTiendaOnlineException.crear(mensajeUSuario,mensajeTecnico);
 		}
 		return MENSAJES.get(codigo);

@@ -1,20 +1,22 @@
 package co.edu.uco.tiendaonline.data.entity;
 import java.util.UUID;
 
+import co.edu.uco.tiendaonline.data.entity.support.BooleanEntity;
+
 public final class TipoIdentificacionEntity {
 	private UUID id;
 	private String codigo;
 	private String nombre;
-	private boolean estado;
+	private BooleanEntity estado;
 	
-	private TipoIdentificacionEntity(final UUID id, final String codigo, final String nombre, final boolean estado) {
+	private TipoIdentificacionEntity(final UUID id, final String codigo, final String nombre, final BooleanEntity estado) {
 		setId(id);
 		setCodigo(codigo);
 		setNombre(nombre);
 		setEstado(estado);
 	}
 	
-	public static final TipoIdentificacionEntity crear(final UUID id, final String codigo, final String nombre, final boolean estado) {
+	public static final TipoIdentificacionEntity crear(final UUID id, final String codigo, final String nombre, final BooleanEntity estado) {
 		return new TipoIdentificacionEntity(id,codigo,nombre,estado);
 	}
 
@@ -30,7 +32,7 @@ public final class TipoIdentificacionEntity {
 		this.nombre = nombre;
 	}
 
-	private final void setEstado(final boolean estado) {
+	private final void setEstado(final BooleanEntity estado) {
 		this.estado = estado;
 	}
 
@@ -46,7 +48,7 @@ public final class TipoIdentificacionEntity {
 		return nombre;
 	}
 
-	public final boolean isEstado() {
+	public final BooleanEntity isEstado() {
 		return estado;
 	}
 	

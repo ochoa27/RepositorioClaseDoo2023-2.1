@@ -12,6 +12,7 @@ import co.edu.uco.tiendaonline.data.dao.TipoIdentificacionDAO;
 import co.edu.uco.tiendaonline.data.dao.daofactory.DAOFactory;
 import co.edu.uco.tiendaonline.data.entity.TipoIdentificacionEntity;
 import co.edu.uco.tiendaonline.service.bussineslogic.UseCase;
+import co.edu.uco.tiendaonline.service.domain.support.BooleanDomain;
 import co.edu.uco.tiendaonline.service.domain.tipoidentificacion.TipoIdentificacionDomain;
 import co.edu.uco.tiendaonline.service.mapper.entity.concrete.TipoIdentificacionEntityMapper;
 
@@ -44,8 +45,7 @@ public final class RegistrarTipoIdentificacionUseCase implements UseCase<TipoIde
 	}
 	
 	private final void validarNoExistenciaMismoCodigo(final String codigo) {
-		//TODO: improve method validations
-		final var domain = TipoIdentificacionDomain.crear(null, codigo, null, false);
+		final var domain = TipoIdentificacionDomain.crear(null, codigo, null, BooleanDomain.crear(false, true));
 		final var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
 		final var resultados = getTipoIdentificacionDAO().consultar(entity);
 		
@@ -56,8 +56,7 @@ public final class RegistrarTipoIdentificacionUseCase implements UseCase<TipoIde
 	}
 	
 	private final void validarNoExistenciaMismoNombre(final String nombre) {
-		//TODO: improve method validations
-		final var domain = TipoIdentificacionDomain.crear(null, null, nombre, false);
+		final var domain = TipoIdentificacionDomain.crear(null, null, nombre, BooleanDomain.crear(false, true));
 		final var entity = TipoIdentificacionEntityMapper.convertToEntity(domain);
 		final var resultados = getTipoIdentificacionDAO().consultar(entity);
 		

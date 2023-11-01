@@ -2,7 +2,7 @@ package co.edu.uco.tiendaonline.service.dto;
 
 import java.util.UUID;
 
-import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
+
 import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
 import co.edu.uco.tiendaonline.crosscutting.util.UtilUUID;
 
@@ -10,20 +10,20 @@ public final  class TipoIdentificacionDTO {
 	private UUID id;
 	private String codigo;
 	private String nombre;
-	private boolean estado;
+	private BooleanDTO estado;
 	
 	public TipoIdentificacionDTO() {
 		setId(UtilUUID.UUIDDEFECTO);
 		setCodigo(UtilTexto.VACIO);
 		setNombre(UtilTexto.VACIO);
-		setEstado(false);
+		setEstado(new BooleanDTO());
 	}
 	
 	public TipoIdentificacionDTO(final UUID id, final String codigo, final String nombre, final boolean estado) {
 		setId(id);
 		setCodigo(codigo);
 		setNombre(nombre);
-		setEstado(estado);
+		setEstado(BooleanDTO.crear().setValor(estado).setValorDefecto(false));
 	}
 	
 	public static final TipoIdentificacionDTO crear() {
@@ -57,12 +57,12 @@ public final  class TipoIdentificacionDTO {
 		return this;
 	}
 	
-	public final boolean isEstado() {
+	public final BooleanDTO isEstado() {
 		return estado;
 	}
 	
-	public final TipoIdentificacionDTO setEstado(final boolean estado) {
-		this.estado = UtilObjeto.obtenerValorDefecto(estado, false);
+	public final TipoIdentificacionDTO setEstado(final BooleanDTO estado) {
+		this.estado = estado.isValorDefecto() ? new BooleanDTO(): new BooleanDTO().setValor(estado.isValor()).setValorDefecto(false);
 		return this;
 	}
 }

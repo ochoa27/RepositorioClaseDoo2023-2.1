@@ -2,23 +2,25 @@ package co.edu.uco.tiendaonline.service.domain.tipoidentificacion;
 
 import java.util.UUID;
 
+import co.edu.uco.tiendaonline.service.domain.support.BooleanDomain;
+
 public final class TipoIdentificacionDomain {
 
 	private UUID id;
 	private String codigo;
 	private String nombre;
-	private boolean estado;
+	private BooleanDomain estado;
 	
 	
 		
-		private TipoIdentificacionDomain(final UUID id, final String codigo, final String nombre, final boolean estado) {
+		private TipoIdentificacionDomain(final UUID id, final String codigo, final String nombre, final BooleanDomain estado) {
 			setId(id);
 			setCodigo(codigo);
 			setNombre(nombre);
 			setEstado(estado);
 		}
 		
-		public static final TipoIdentificacionDomain crear(final UUID id, final String codigo, final String nombre, final boolean estado) {
+		public static final TipoIdentificacionDomain crear(final UUID id, final String codigo, final String nombre, final BooleanDomain estado) {
 			return new TipoIdentificacionDomain(id,codigo,nombre,estado);
 		}
 
@@ -34,7 +36,7 @@ public final class TipoIdentificacionDomain {
 			this.nombre = nombre;
 		}
 
-		private final void setEstado(final boolean estado) {
+		private final void setEstado(final BooleanDomain estado) {
 			this.estado = estado;
 		}
 
@@ -50,7 +52,7 @@ public final class TipoIdentificacionDomain {
 			return nombre;
 		}
 
-		public final boolean isEstado() {
+		public final BooleanDomain isEstado() {
 			return estado;
 		}
 		

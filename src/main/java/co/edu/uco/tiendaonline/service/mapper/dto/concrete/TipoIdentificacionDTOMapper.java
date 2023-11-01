@@ -26,7 +26,7 @@ public final class TipoIdentificacionDTOMapper implements DTOMapper<TipoIdentifi
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		
-		return TipoIdentificacionDomain.crear(dto.getId(), dto.getCodigo(), dto.getNombre(), dto.isEstado());
+		return TipoIdentificacionDomain.crear(dto.getId(), dto.getCodigo(), dto.getNombre(), BooleanDTOMapper.convertToDomain(dto.isEstado()));
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public final class TipoIdentificacionDTOMapper implements DTOMapper<TipoIdentifi
 			.setId(domain.getId())
 			.setCodigo(domain.getCodigo())
 			.setNombre(domain.getNombre())
-			.setEstado(domain.isEstado());
+			.setEstado(BooleanDTOMapper.convertToDTO(domain.isEstado()));
 	}
 	
 	public static final TipoIdentificacionDomain convertToDomain(final TipoIdentificacionDTO dto) {		 
@@ -60,12 +60,5 @@ public final class TipoIdentificacionDTOMapper implements DTOMapper<TipoIdentifi
 		
 		return resultados;
 	}
-
-
-	
-	
-	
-	
-	
 
 }

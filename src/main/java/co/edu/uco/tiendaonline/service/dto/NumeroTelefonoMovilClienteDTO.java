@@ -1,18 +1,18 @@
 package co.edu.uco.tiendaonline.service.dto;
 
-import co.edu.uco.tiendaonline.crosscutting.util.UtilObjeto;
+
 import co.edu.uco.tiendaonline.crosscutting.util.UtilTexto;
 
 public class NumeroTelefonoMovilClienteDTO {
 	private String numeroTelefonoMovil;
-	private boolean numeroTelefonoMovilConfirmado;
+	private BooleanDTO numeroTelefonoMovilConfirmado;
 	
 	public NumeroTelefonoMovilClienteDTO() {
 		setNumeroTelefonoMovil(UtilTexto.VACIO);
-		setNumeroTelefonoMovilConfirmado(false);
+		setNumeroTelefonoMovilConfirmado(new BooleanDTO());
 	}
 	
-	public NumeroTelefonoMovilClienteDTO(final String numeroTelefonoMovil, final boolean numeroTelefonoMovilConfirmado) {
+	public NumeroTelefonoMovilClienteDTO(final String numeroTelefonoMovil, final BooleanDTO numeroTelefonoMovilConfirmado) {
 		setNumeroTelefonoMovil(numeroTelefonoMovil);
 		setNumeroTelefonoMovilConfirmado(numeroTelefonoMovilConfirmado);
 	}
@@ -25,7 +25,7 @@ public class NumeroTelefonoMovilClienteDTO {
 		return numeroTelefonoMovil;
 	}
 	
-	public final boolean isNumeroTelefonoMovilConfirmado() {
+	public final BooleanDTO isNumeroTelefonoMovilConfirmado() {
 		return numeroTelefonoMovilConfirmado;
 	}
 
@@ -34,12 +34,12 @@ public class NumeroTelefonoMovilClienteDTO {
 		return this;
 	}
 
-	public final NumeroTelefonoMovilClienteDTO setNumeroTelefonoMovilConfirmado(final boolean numeroTelefonoMovilConfirmado) {
-		this.numeroTelefonoMovilConfirmado = UtilObjeto.obtenerValorDefecto(numeroTelefonoMovilConfirmado, false);
+	public final NumeroTelefonoMovilClienteDTO setNumeroTelefonoMovilConfirmado(final BooleanDTO numeroTelefonoMovilConfirmado) {
+		this.numeroTelefonoMovilConfirmado = numeroTelefonoMovilConfirmado.isValorDefecto() ? BooleanDTO.crear()
+				: BooleanDTO.crear().setValor(numeroTelefonoMovilConfirmado.isValor()).setValorDefecto(false);
 		return this;
 	}
-	
-	
 }
+
 
 

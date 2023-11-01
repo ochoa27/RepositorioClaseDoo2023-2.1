@@ -30,7 +30,13 @@ public class SQLServerDAOFactory extends DAOFactory {
             String password = "<password>";
             conexion = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
-            //TODO create personalized exception
+        	var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000024);
+			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
+        } catch (Exception e) {
+			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000025);
+			throw DataTiendaOnlineException.crear( mensajeUsuario, mensajeTecnico,e);
         }
 	}
 

@@ -16,38 +16,35 @@ public class CorreoElectronicoClienteEntityMapper implements EntityMapper<Correo
 		super();
 	}
 	
-	
-
 	@Override
-	public CorreoElectronicoClienteDomain toDomain(CorreoElectronicoClienteEntity entity) {
+	public final CorreoElectronicoClienteDomain toDomain(final CorreoElectronicoClienteEntity entity) {
 		if(UtilObjeto.esNulo(entity)) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000080);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		 
-		return CorreoElectronicoClienteDomain.crear(entity.getCorreoElectronico(), entity.isCorreoElectronicoConfirmado());
+		return CorreoElectronicoClienteDomain.crear(entity.getCorreoElectronico(),
+				BooleanEntityMapper.convertToDomain(entity.isCorreoElectronicoConfirmado()));
 	}
-	
 
 	@Override
-	public CorreoElectronicoClienteEntity toEntity(CorreoElectronicoClienteDomain domain) {
+	public final CorreoElectronicoClienteEntity toEntity(final CorreoElectronicoClienteDomain domain) {
 		if(UtilObjeto.esNulo(domain)) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
 			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000081);
 			throw ServiceTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);
 		}
 		
-		return CorreoElectronicoClienteEntity.crear(domain.getCorreoElectronico(), domain.isCorreoElectronicoConfirmado());
+		return CorreoElectronicoClienteEntity.crear(domain.getCorreoElectronico(),
+				BooleanEntityMapper.convertToEntity(domain.isCorreoElectronicoConfirmado()));
 	}
-	
+
+	public static final CorreoElectronicoClienteDomain convertToDomain(final CorreoElectronicoClienteEntity entity) {		 
+		return instancia.toDomain(entity);
+	}
 	
 	public static final CorreoElectronicoClienteEntity convertToEntity(final CorreoElectronicoClienteDomain domain) {
 		return instancia.toEntity(domain);
 	}
-	
-	public static final CorreoElectronicoClienteDomain  convertToDomain(final CorreoElectronicoClienteEntity entity) {
-		return instancia.toDomain(entity);
-	}
-
 }

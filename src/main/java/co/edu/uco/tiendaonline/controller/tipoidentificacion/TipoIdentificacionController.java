@@ -51,8 +51,8 @@ public final  class TipoIdentificacionController {
 			codigoHttp = HttpStatus.OK;
 			respuesta.getMensajes().add("El tipo de identificación fue registrado exitosamente");
 		} catch (final TiendaOnlineException excepcion) {
-			respuesta.getMensajes().add(excepcion.getMendajeUsuario());
-			System.err.println(excepcion.getMendajeTecnico());
+			respuesta.getMensajes().add(excepcion.getMesajeUsuario());
+			System.err.println(excepcion.getMensajeTecnico());
 			System.err.println(excepcion.getLugar());
 			excepcion.getExceptionRaiz().printStackTrace();
 			// TODO: Hacer logging de la excepción presentada

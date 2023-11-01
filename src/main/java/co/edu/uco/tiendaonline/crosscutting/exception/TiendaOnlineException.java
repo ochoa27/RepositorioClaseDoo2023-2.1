@@ -23,21 +23,25 @@ public class TiendaOnlineException extends RuntimeException{
 		setExcepcionRaiz(excepcionRaiz);
 		setMensajeUsuario(mensajeUsuario);
 		setMensajeTecnico(mensajeTecnico);
-		
 	}
+	
 	private final void setLugar(final LugarException lugar) {
 		this.lugar = UtilObjeto.obtenerValorDefecto(lugar, LugarException.GENERAL);
 	}
+	
 	private final void setExcepcionRaiz(final Throwable exceptionRaiz) {
 		setTieneExcepcionRaiz(!UtilObjeto.esNulo(exceptionRaiz));
 		this.excepcionRaiz = UtilObjeto.obtenerValorDefecto(exceptionRaiz, new Exception());
 	}
+	
 	private final void setMensajeUsuario(final String mendajeUsuario) {
 		this.mensajeUsuario = UtilTexto.aplicarTrim(mensajeUsuario);
 	}
+	
 	private final void setMensajeTecnico(final String mendajeTecnico) {
 		this.mensajeTecnico =UtilTexto.aplicarTrim(mensajeTecnico);
 	}
+	
 	private void setTieneExcepcionRaiz(boolean tieneExcepcionRaiz) {
 		this.tieneExcepcionRaiz = tieneExcepcionRaiz;
 	}
@@ -45,16 +49,19 @@ public class TiendaOnlineException extends RuntimeException{
 	public static final long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 	public final LugarException getLugar() {
 		return lugar;
 	}
+	
 	public final Throwable getExceptionRaiz() {
 		return excepcionRaiz;
 	}
-	public final String getMendajeUsuario() {
+	
+	public final String getMesajeUsuario() {
 		return mensajeUsuario;
 	}
-	public final String getMendajeTecnico() {
+	public final String getMensajeTecnico() {
 		return mensajeTecnico;
 	}
 	

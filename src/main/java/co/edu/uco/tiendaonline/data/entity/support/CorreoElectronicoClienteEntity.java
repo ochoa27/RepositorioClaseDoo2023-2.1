@@ -4,14 +4,14 @@ public final  class CorreoElectronicoClienteEntity {
 	
 	
 		private String correoElectronico;
-		private boolean correoElectronicoConfirmado;
+		private BooleanEntity correoElectronicoConfirmado;
 		
-		private CorreoElectronicoClienteEntity(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+		private CorreoElectronicoClienteEntity(final String correoElectronico, final BooleanEntity correoElectronicoConfirmado) {
 			setCorreoElectronico(correoElectronico);
 			setCorreoElectronicoConfirmado(correoElectronicoConfirmado);
 		}
 		
-		public static final CorreoElectronicoClienteEntity crear(final String correoElectronico, final boolean correoElectronicoConfirmado) {
+		public static final CorreoElectronicoClienteEntity crear(final String correoElectronico, final BooleanEntity correoElectronicoConfirmado) {
 			return new CorreoElectronicoClienteEntity(correoElectronico, correoElectronicoConfirmado);
 		}
 
@@ -19,7 +19,7 @@ public final  class CorreoElectronicoClienteEntity {
 			this.correoElectronico = correoElectronico;
 		}
 
-		private final void setCorreoElectronicoConfirmado(final boolean correoElectronicoConfirmado) {
+		private final void setCorreoElectronicoConfirmado(final BooleanEntity correoElectronicoConfirmado) {
 			this.correoElectronicoConfirmado = correoElectronicoConfirmado;
 		}
 
@@ -27,7 +27,7 @@ public final  class CorreoElectronicoClienteEntity {
 			return correoElectronico;
 		}
 
-		public final boolean isCorreoElectronicoConfirmado() {
+		public final BooleanEntity isCorreoElectronicoConfirmado() {
 			return correoElectronicoConfirmado;
 		}
 	}
