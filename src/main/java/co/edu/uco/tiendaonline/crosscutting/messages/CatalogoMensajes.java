@@ -203,8 +203,6 @@ public final class CatalogoMensajes {
 				"No se puede actualizar tipo de identificación. Ya existe un tipo de identificación con ese codigo"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000094, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"No se puede actualizar tipo de identificación. Ya existe un tipo de identificación con ese nombre"));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000095, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
-				"Se ha presentado un problema tratando de eliminar un tipo de identificación"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000096, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo setFactoria de la clase EliminarTipoIdentifaciónUseCase.Debido a que la factoria con la cual se desea crear esta nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000097, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
@@ -273,14 +271,10 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema en el metodo toDomain de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación domain a partir de una entidad de tipo identificación dto nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000129, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo toDTO de la clase TipoIdentificaciónDTOMapper.No es posible mapear un tipo de identificación dto a partir de una entidad de tipo identificación domain nula"));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000130, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
-				"El tipo de identificación fue registrado exitosamente"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000131, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"Se presento un error inesperado tratando de consultar un tipo de identificación"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000132, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema inesperado en función execute en ConsultarTipoIdentificacionFacade tratando de consultar un tipo de identificación.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000133, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
-				"El tipo de identificación fue consultado exitosamente"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000134, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo toDomain de la clase BooleanEntityMapper.No es posible mapear un Boolean dominio a partir de una entidad de Boolean entity nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000135, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
@@ -289,10 +283,6 @@ public final class CatalogoMensajes {
 				"Se ha presentado un problema en el metodo toDomain de la clase BooleanDTOMapper.No es posible mapear un Boolean domain a partir de una de un Boolean dto nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000137, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo toDTO de la clase BooleanDTOMapper.No es posible mapear un tipo de identificación dto a partir de un Boolean domain nula"));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000138, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
-				"El tipo de identificación fue modificado exitosamente"));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000139, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
-				"El tipo de identificación fue eliminado exitosamente"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000140, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema en el metodo toDomain de la clase NombreCompletoClienteDTOMapper.No es posible mapear un nombre completo cliente domain a partir de un nombre completo cliente dto nula"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000141, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
@@ -377,18 +367,14 @@ public final class CatalogoMensajes {
 				"Se presento un error inesperado tratando de registrar un nuevo cliente"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000181, TipoMensaje.TECNICO, CategoriaMensaje.ERROR,
 				"Se ha presentado un problema inesperado en función execute en RegistrarClienteFacade tratando de registrar un nuevo cliente.Se presento una excepción de tipo Exception. Por favor verifique la traza del error presentado..."));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000182, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
-				"El cliente fue consultado exitosamente"));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000183, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
-				"El cliente fue registrado exitosamente"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000184, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"No se puede registrar el cliente. No existe el tipo de identificación indicado"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000185, TipoMensaje.USUARIO, CategoriaMensaje.ERROR,
 				"No se puede modificar el cliente. No existe el tipo de identificación indicado"));
 		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000186, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
 				"El cliente fue eliminado exitosamente"));
-		agregarMensaje(Mensaje.crear(CodigoMensaje.M0000000187, TipoMensaje.USUARIO, CategoriaMensaje.CONFIRMACION,
-				"El cliente fue modificado exitosamente"));
+		
+		
 	}
 	
 	private static void agregarMensaje(final Mensaje mensaje) {

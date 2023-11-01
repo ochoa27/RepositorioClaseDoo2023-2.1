@@ -25,9 +25,9 @@ public class SQLServerDAOFactory extends DAOFactory {
 	@Override
 	protected final void abrirConexion() {
 		try {
-            String url = "jdbc:sqlserver://<server>:<port>;databaseName=<database>";
-            String user = "<username>";
-            String password = "<password>";
+            String url = "jdbc:sqlserver://BD_TIENDA_ONLINE_SANDBOX:1433;databaseName=BD_TIENDA_ONLINE_SANDBOX";
+            String user = "usrTiendaOnline";
+            String password = "usrT13nd40nl1n3";
             conexion = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
         	var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
