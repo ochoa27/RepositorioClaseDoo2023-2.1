@@ -75,7 +75,7 @@ public class SQLServerDAOFactory extends DAOFactory {
 	public TipoIdentificacionDAO obtenerTipoIdentificacionDAO() {
 		if(!UtilSQL.conexionAbierta(conexion)) {
 			var mensajeUsuario = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000004);
-			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M00000000027);
+			var mensajeTecnico = CatalogoMensajes.obtenerContenidoMensaje(CodigoMensaje.M0000000027);
 			throw DataTiendaOnlineException.crear(mensajeUsuario, mensajeTecnico);		
         }
 		return new TipoIdentificacionSQLServerDAO(conexion);
