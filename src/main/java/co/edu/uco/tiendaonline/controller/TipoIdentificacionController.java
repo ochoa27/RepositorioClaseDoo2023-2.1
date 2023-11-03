@@ -42,7 +42,7 @@ public final  class TipoIdentificacionController {
 		return id;
 	}
 	
-	@PostMapping
+	@PostMapping("/RegistarTipoIDentificacion")
 	public ResponseEntity<Respuesta<TipoIdentificacionDTO>> registrar(@RequestBody TipoIdentificacionDTO dto) {
 		Respuesta<TipoIdentificacionDTO> respuesta = new Respuesta<>();
 		HttpStatusCode codigoHttp = HttpStatus.BAD_REQUEST;
@@ -53,11 +53,11 @@ public final  class TipoIdentificacionController {
 			respuesta.getMensajes().add("El tipo de identificación fue registrado exitosamente");
 			logger.debug("Registrando tipos de identificacion");
 		} catch (final TiendaOnlineException excepcion) {
-			respuesta.getMensajes().add(excepcion.getMesajeUsuario());
-			System.err.println(excepcion.getMensajeTecnico());
+			respuesta.getMensajes().add(excepcion.getMensajeTecnico());
+	/*		System.err.println(excepcion.getMensajeTecnico());
 			System.err.println(excepcion.getLugar());
-			excepcion.getExceptionRaiz().printStackTrace();
-			logger.error(excepcion.getLocalizedMessage(),excepcion);;
+			excepcion.getExceptionRaiz().printStackTrace();*/
+/*			logger.error(excepcion.getLocalizedMessage(),excepcion);;*/
 		} catch (final Exception excepcion) {
 			respuesta.getMensajes().add("Se ha presentado un problema inesperado tratando de registrar el tipo "
 					+ "de identificación.");

@@ -185,19 +185,19 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		if(!UtilObjeto.esNulo(tipoIdentificacion)) {
 			if(!UtilUUID.esNulo(tipoIdentificacion.getId())) {
 				sentencia.append(operadorCondicional).append(" id = ? ");
-				operadorCondicional = " AND";
+				operadorCondicional = "AND";
 				parametros.add(tipoIdentificacion.getId());
 			}
 			
 			if(!UtilTexto.estaVacio(tipoIdentificacion.getCodigo())) {
 				sentencia.append(operadorCondicional).append(" codigo = ? ");
-				operadorCondicional = " AND";
+				operadorCondicional = "AND";
 				parametros.add(tipoIdentificacion.getCodigo());
 			}
 			
 			if(!UtilTexto.estaVacio(tipoIdentificacion.getNombre())) {
 				sentencia.append(operadorCondicional).append(" nombre = ? ");
-				operadorCondicional = " AND";
+				operadorCondicional = "AND";
 				parametros.add(tipoIdentificacion.getNombre());
 			}
 			
@@ -208,7 +208,7 @@ public final class TipoIdentificacionSQLServerDAO extends SQLDAO implements Tipo
 		}
 		
 		
-		sentencia.append("ORDER BY codigo ");
+		sentencia.append("ORDER BY codigo");
 		return sentencia.toString();
 	}
 

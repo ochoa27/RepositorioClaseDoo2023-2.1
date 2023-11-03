@@ -1,8 +1,9 @@
 package co.edu.uco.tiendaonline.data.dao.base;
 
+import co.edu.uco.tiendaonline.crosscutting.util.UtilSQL;
 import java.sql.Connection;
 
-import com.eternalnovices.cotasker.crosscutting.util.UtilSQL;
+/*import com.eternalnovices.cotasker.crosscutting.util.UtilSQL;*/
 
 import co.edu.uco.tiendaonline.crosscutting.exception.concrete.DataTiendaOnlineException;
 import co.edu.uco.tiendaonline.crosscutting.messages.CatalogoMensajes;
